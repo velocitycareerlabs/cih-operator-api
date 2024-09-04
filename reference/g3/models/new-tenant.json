@@ -1,0 +1,31 @@
+{
+  "allOf": [
+    {
+      "$ref": "./modify-tenant.json",
+      "x-stoplight": {
+        "id": "ohjtssrj4u4kl"
+      }
+    },
+    {
+      "type": "object",
+      "properties": {
+        "did": {
+          "type": "string",
+          "pattern": "^did:[a-z0-9]+:[A-Za-z0-9._:?=&;-]+$",
+          "x-stoplight": {
+            "id": "965nkpdgdjlqb"
+          }
+        }
+      },
+      "required": [
+        "did"
+      ],
+      "x-stoplight": {
+        "id": "h0jeneokgbegx"
+      }
+    }
+  ],
+  "x-stoplight": {
+    "id": "2qjk2am9wvdht"
+  }
+}

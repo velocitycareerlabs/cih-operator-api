@@ -1,0 +1,18 @@
+{
+  "title": "agent-disclosure",
+  "description": "The disclosure request made by an inspector on the velocity network. It describes credential types wanted and (in the future) predicate information as well as terms and conditions for usage of the data",
+  "allOf": [
+    {
+      "$ref": "./new-agent-disclosure.v1.json"
+    },
+    {
+      "$ref": "../../common/models/mutable-record.v1.json"
+    }
+  ],
+  "required": [
+    "id",
+    "vendorEndpoint",
+    "createdAt",
+    "updatedAt"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "title": "key-metadata",
+  "x-stoplight": {
+    "id": "erx9kq9memb2o"
+  },
+  "allOf": [
+    {
+      "$ref": "../../common/models/new-key-metadata.v1.json",
+      "x-stoplight": {
+        "id": "pxc8icg6dfjte"
+      }
+    },
+    {
+      "$ref": "../../common/models/immutable-record.v1.json",
+      "x-stoplight": {
+        "id": "uphgqua4gf1kk"
+      }
+    }
+  ]
+}

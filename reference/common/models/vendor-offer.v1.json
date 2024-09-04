@@ -1,0 +1,167 @@
+{
+  "title": "vendor-offer",
+  "description": "An offer is similar to a credential but is never wrapped in a JWT and hence doesnt carry the JWS (digital signature)",
+  "x-tags": [
+    "offers"
+  ],
+  "required": [
+    "exchangeId"
+  ],
+  "allOf": [
+    {
+      "$ref": "./new-vendor-offer.v1.json"
+    },
+    {
+      "$ref": "./mutable-record.v1.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "exchangeId": {
+          "type": "string"
+        },
+        "issuer": {
+          "x-stoplight": {
+            "id": "dkg0o9gomqg30"
+          },
+          "oneOf": [
+            {
+              "type": "object",
+              "x-stoplight": {
+                "id": "aau8spkerr7t5"
+              },
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "z6wpr1ov797j5"
+                  }
+                },
+                "image": {
+                  "type": "string",
+                  "x-stoplight": {
+                    "id": "6gqxmw5e08txe"
+                  },
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            {
+              "type": "string",
+              "x-stoplight": {
+                "id": "bkd5x4gv1wczf"
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "issuer"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "606317c3d0082cc569b27e5e",
+      "type": [
+        "CurrentEmploymentPosition"
+      ],
+      "credentialSubject": {
+        "vendorUserId": "5f29cf7cf12da6007abb9090",
+        "company": "did:velocity:0xc257274276a4e539741ca11b590b9447b26a8051",
+        "companyName": {
+          "localized": {
+            "en": "Microsoft Corporation"
+          }
+        },
+        "title": {
+          "localized": {
+            "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+          }
+        },
+        "startMonthYear": {
+          "month": 10,
+          "year": 2010
+        },
+        "endMonthYear": {
+          "month": 6,
+          "year": 2019
+        },
+        "location": {
+          "countryCode": "US",
+          "regionCode": "MA"
+        },
+        "description": {
+          "localized": {
+            "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+          }
+        }
+      },
+      "issuer": {
+        "id": "did:ion:1234",
+        "name": "ACME Corportation",
+        "image": "https://example.com/image.png"
+      },
+      "validFrom": "2019-08-24T14:15:22Z",
+      "validUntil": "2019-08-24T14:15:22Z",
+      "offerId": "skwqoc82kj(-ska",
+      "offerCreationDate": "2019-08-24T14:15:22Z",
+      "offerExpirationDate": "2019-08-24T14:15:22Z",
+      "exchangeId": "606317bbd0082cc569b27e5d",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    },
+    {
+      "id": "606317c3d0082cc569b27e5e",
+      "type": [
+        "CurrentEmploymentPosition"
+      ],
+      "credentialSubject": {
+        "vendorUserId": "5f29cf7cf12da6007abb9090",
+        "company": "did:velocity:0xc257274276a4e539741ca11b590b9447b26a8051",
+        "companyName": {
+          "localized": {
+            "en": "Microsoft Corporation"
+          }
+        },
+        "title": {
+          "localized": {
+            "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+          }
+        },
+        "startMonthYear": {
+          "month": 10,
+          "year": 2010
+        },
+        "endMonthYear": {
+          "month": 6,
+          "year": 2019
+        },
+        "location": {
+          "countryCode": "US",
+          "regionCode": "MA"
+        },
+        "description": {
+          "localized": {
+            "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+          }
+        }
+      },
+      "issuer": "did:ion:1234",
+      "validFrom": "2019-08-24T14:15:22Z",
+      "validUntil": "2019-08-24T14:15:22Z",
+      "offerId": "skwqoc82kj(-ska",
+      "offerCreationDate": "2019-08-24T14:15:22Z",
+      "offerExpirationDate": "2019-08-24T14:15:22Z",
+      "exchangeId": "606317bbd0082cc569b27e5d",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    }
+  ]
+}

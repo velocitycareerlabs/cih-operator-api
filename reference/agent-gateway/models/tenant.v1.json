@@ -1,0 +1,38 @@
+{
+  "title": "tenant",
+  "allOf": [
+    {
+      "$ref": "./new-tenant.v1.json"
+    },
+    {
+      "$ref": "../../common/models/mutable-record.v1.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "logo": {
+          "type": "string",
+          "format": "uri"
+        },
+        "name": {
+          "type": "string",
+          "description": "did for the org"
+        },
+        "description": {
+          "type": "string",
+          "description": "did for the org"
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "id": "5fsdflkdsfsdfsfwwerr",
+      "did": "did:ion:129031903190239123021312",
+      "name": "ACME Limited",
+      "logo": "http://example.com/logo.com",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z"
+    }
+  ]
+}

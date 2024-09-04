@@ -1,0 +1,48 @@
+{
+  "title": "new-depot",
+  "x-stoplight": {
+    "id": "lc841tivrloze"
+  },
+  "type": "object",
+  "required": [
+    "reference"
+  ],
+  "properties": {
+    "reference": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "v7i1ej0mttcfr"
+      },
+      "description": "The unique internal reference for this depot. Typically a employee or student id of the system"
+    },
+    "authValues": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "9vkynfcd90fg0"
+      },
+      "description": "auth values to use for authenticating the user or session",
+      "items": {
+        "x-stoplight": {
+          "id": "4v2rfseefib1m"
+        },
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string",
+            "x-stoplight": {
+              "id": "y4s1w3l8shzfm"
+            }
+          },
+          {
+            "type": "boolean",
+            "x-stoplight": {
+              "id": "umkkehu4pbw8s"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "title": "presentation-content",
+  "x-stoplight": {
+    "id": "jtkrq2ay2ri7k"
+  },
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "amllu9q5l0oil"
+      }
+    },
+    "verifiableCredentials": {
+      "type": "array",
+      "x-stoplight": {
+        "id": "j3v22m3t0ib16"
+      },
+      "items": {
+        "$ref": "../../common/models/vendor-credential.v1.json",
+        "x-stoplight": {
+          "id": "os2aa42dgn12m"
+        }
+      }
+    }
+  }
+}

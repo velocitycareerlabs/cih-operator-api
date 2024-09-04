@@ -1,0 +1,45 @@
+{
+  "title": "credential-checks",
+  "x-stoplight": {
+    "id": "uz7ld9k0b5lql"
+  },
+  "type": "object",
+  "properties": {
+    "verified": {
+      "type": "boolean",
+      "x-stoplight": {
+        "id": "x7jr4v2a22fm4"
+      }
+    },
+    "tamperCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "rfo9avsjxys91"
+      }
+    },
+    "issuerCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "4in26uj71zn0j"
+      }
+    },
+    "revocationCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "x6a2pqico1wzn"
+      }
+    },
+    "holderCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "xpnmabqbxcuqc"
+      }
+    },
+    "validityCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "m370vse9w27jo"
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "title": "new-agent-disclosure",
+  "type": "object",
+  "description": "The disclosure request made by an inspector on the velocity newtwork. It describes credential types wanted and (in the future) predicate information as well as terms and conditions for usage of the data",
+  "properties": {
+    "configurationType": {
+      "type": "string",
+      "description": "IIssuing or inspetion",
+      "enum": [
+        "issuing",
+        "inspection"
+      ]
+    },
+    "vendorEndpoint": {
+      "type": "string",
+      "default": "receive-checked-credentials",
+      "enum": [
+        "receive-checked-credentials",
+        "receive-unchecked-credentials",
+        "issuing-identification",
+        "integrated-issuing-identification"
+      ],
+      "description": "Whether a webhook will be called, and if so which one"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description field for this disclosure"
+    },
+    "identificationMethods": {
+      "type": "array",
+      "default": [
+        "verifiable_presentation"
+      ],
+      "minItems": 1,
+      "description": "the identification method indicates what identification method(s) are supported on an issuing disclosure request. To use `preauth` requires the issuer to include a `vendorOriginContext` in the deep link. `verifiable_presentation` requires `types` to be specified in this disclosure. in the future an issuer will be able to use both methods in one disclosure\n\nif `configurationType` is `issuing` then `identificationMethods` is required with at least one entry ",
+      "items": {
+        "type": "string",
+        "enum": [
+          "preauth",
+          "verifiable_presentation"
+        ]
+      }
+    },
+    "offerMode": {
+      "type": "string",
+      "enum": [
+        "preloaded",
+        "webhook"
+      ],
+      "description": "offerMode should be set on all issuing disclosures\n\nif `configurationType` is `issuing`, then `offerMode` is required"
+    },
+    "types": {
+      "type": "array",
+      "description": "the set of types that are required to be disclosed. \n\nIf the configurationType is `inspection` or the `identificationMethod` contains `verifiable_presentation`, then types are required",
+      "example": "[ { \"type\": \"PastEmploymentPosition\"}, { \"type\":  \"CurrentEmploymentPosition\"}, { \"type\": \"EducationDegree\"} ]",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The credential type to be disclosed"
+          }
+        }
+      }
+    },
+    "termsUrl": {
+      "type": "string",
+      "description": "link to a online terms and coniditions for issuing or disclosure"
+    },
+    "purpose": {
+      "type": "string",
+      "description": "purpose is a summary of the description\n\n*required*, if the `configurationType` is `inspection` or the `identificationMode` is `verifiable_presentation`"
+    },
+    "duration": {
+      "type": "string",
+      "description": "duration can be a number of days (5d), weeks (12w), months (6m) or years (7y)\n\n*required*, if the `configurationType` is `inspection` or the `identificationMode` is `verifiable_presentation`"
+    },
+    "presentationDefinition": {
+      "type": "object",
+      "description": "A spec compliant presentation definition. https://identity.foundation/presentation-exchange/#presentation-definition"
+    },
+    "vendorDisclosureId": {
+      "type": "string",
+      "description": "the vendor's internal id for the requistion or position"
+    },
+    "identityMatchers": {
+      "type": "object",
+      "properties": {
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "array",
+                "description": "json path(s) to resolve in order",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "rule": {
+                "type": "string",
+                "description": "the rule to run. ONly pick is supported right ow",
+                "enum": [
+                  "pick",
+                  "equal"
+                ]
+              },
+              "valueIndex": {
+                "type": "integer",
+                "description": "the index to use with in a data row in values. Value must return true when compared using ==="
+              }
+            },
+            "required": [
+              "path",
+              "rule",
+              "valueIndex"
+            ]
+          }
+        },
+        "vendorUserIdIndex": {
+          "type": "integer",
+          "description": "the index to use for the 'userId' value for a matched user. Must be convertable to a string"
+        }
+      },
+      "required": [
+        "rules",
+        "vendorUserIdIndex"
+      ]
+    },
+    "deactivationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "can be configured to deactivate at a predetermined time or to be deactivated on demand by setting this to now"
+    },
+    "sendPushOnVerification": {
+      "type": "boolean",
+      "description": "whether a push notification should be sent when verification occurs. defaults to false",
+      "default": false
+    }
+  },
+  "required": [
+    "configurationType",
+    "vendorEndpoint",
+    "termsUrl"
+  ]
+}

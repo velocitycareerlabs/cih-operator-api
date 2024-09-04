@@ -1,0 +1,11 @@
+{
+  "title": "key-metadata",
+  "allOf": [
+    {
+      "$ref": "../../common/models/new-key-metadata.v1.json"
+    },
+    {
+      "$ref": "../../common/models/immutable-record.v1.json"
+    }
+  ]
+}

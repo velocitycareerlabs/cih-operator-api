@@ -1,0 +1,11 @@
+{
+  "title": "new-key",
+  "allOf": [
+    {
+      "$ref": "../../common/models/new-key-metadata.v1.json"
+    },
+    {
+      "$ref": "./secret-key.v1.json"
+    }
+  ]
+}

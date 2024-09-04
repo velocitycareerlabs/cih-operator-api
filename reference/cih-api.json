@@ -1,0 +1,3163 @@
+{
+  "openapi": "3.1.0",
+  "x-stoplight": {
+    "id": "c0zlj9fh5pflv"
+  },
+  "info": {
+    "title": "cih-api",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://cih.velocitycareerlabs.io",
+      "description": "Credential Integration Hub"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tenants",
+      "description": "Tenants are Velocity Network registered organizations using this agent"
+    },
+    {
+      "name": "Issuer Services",
+      "description": "Issuer services for the tenant"
+    },
+    {
+      "name": "Relying Party Services",
+      "description": "Relying Party services for the tenant"
+    },
+    {
+      "name": "Depots",
+      "description": "Depots are targets for credentials for an issuer service"
+    },
+    {
+      "name": "Invitation",
+      "description": "Invitation sent or displayed to the user to trigger the issuer or relying party interaction links"
+    },
+    {
+      "name": "Credentials",
+      "description": "Credentials offered and issued via the issuer service"
+    },
+    {
+      "name": "Presentations",
+      "description": "Presentations received from this depot"
+    }
+  ],
+  "paths": {
+    "/tenants/create": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenant",
+                  "keys"
+                ],
+                "properties": {
+                  "tenant": {
+                    "$ref": "./g3/models/new-tenant.json",
+                    "x-stoplight": {
+                      "id": "ukowd9t27ouvu"
+                    }
+                  },
+                  "keys": {
+                    "x-stoplight": {
+                      "id": "pt7l2nlbcvjbt"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$ref": "./g3/models/new-key.json",
+                      "x-stoplight": {
+                        "id": "11hngpsqkmjei"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Tenant configured for webhooks": {
+                  "value": {
+                    "tenant": {
+                      "webhookUrl": "http://webhook.example.com",
+                      "webHookAuth": {
+                        "type": "bearer",
+                        "bearerToken": "HysE53p)1$"
+                      },
+                      "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A"
+                    },
+                    "keys": [
+                      {
+                        "purposes": [
+                          "DLT_TRANSACTIONS",
+                          "EXCHANGES",
+                          "ISSUING_METADATA"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#key0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      }
+                    ]
+                  }
+                },
+                "Tenant configured for batch issuing": {
+                  "value": {
+                    "tenant": {
+                      "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A"
+                    },
+                    "keys": [
+                      {
+                        "purposes": [
+                          "DLT_TRANSACTIONS",
+                          "EXCHANGES",
+                          "ISSUING_METADATA"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#key0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Create tenant",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "tenant",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "tenant": {
+                      "$ref": "./g3/models/tenant.json",
+                      "x-stoplight": {
+                        "id": "mz4b9yjfyu1r7"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "xtkt8rbcok6qz"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "tenant": {
+                        "id": "669f15e3591256df06edee96",
+                        "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A",
+                        "name": "Alpha University",
+                        "description": "Alpha University is an esteemed institution....",
+                        "logo": "http://example.com/alpha-uni-logo-400x400.png",
+                        "keyMetadatas": [
+                          {
+                            "id": "669f15ad591256df06edee95",
+                            "purposes": [
+                              "DLT_TRANSACTIONS",
+                              "EXCHANGES",
+                              "ISSUING_METADATA"
+                            ],
+                            "algorithm": "SECP256K1",
+                            "encoding": "hex",
+                            "kidFragment": "#key0",
+                            "createdAt": "2019-08-24T14:15:22Z"
+                          }
+                        ],
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-create",
+        "tags": [
+          "Tenants"
+        ]
+      }
+    },
+    "/tenants/get": {
+      "get": {
+        "summary": "Get tenants",
+        "tags": [
+          "Tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tenants",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "tenants": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "53tnuqv0222ms"
+                      },
+                      "items": {
+                        "$ref": "./g3/models/tenant.json",
+                        "x-stoplight": {
+                          "id": "jzd7xls4e1qxl"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "b0t3qp8tlb6oz"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample Tenant": {
+                    "value": {
+                      "tenants": [
+                        {
+                          "id": "669f15e3591256df06edee96",
+                          "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A",
+                          "name": "Alpha University",
+                          "description": "Alpha University is an esteemed institution....",
+                          "logo": "http://example.com/alpha-uni-logo-400x400.png",
+                          "keyMetadatas": [
+                            {
+                              "id": "669f15ad591256df06edee95",
+                              "purposes": [
+                                "DLT_TRANSACTIONS"
+                              ],
+                              "algorithm": "SECP256K1",
+                              "encoding": "hex",
+                              "kidFragment": "#key0",
+                              "createdAt": "2019-08-24T14:15:22Z"
+                            }
+                          ],
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-get",
+        "x-stoplight": {
+          "id": "tidszeczcyatz"
+        },
+        "parameters": [
+          {
+            "description": "filter by tenant ids (optional)",
+            "schema": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "1n9627sg2ciiy"
+              },
+              "items": {
+                "x-stoplight": {
+                  "id": "3zmj1i9m37zo4"
+                },
+                "type": "string"
+              }
+            },
+            "in": "query",
+            "name": "tenantId",
+            "style": "form",
+            "explode": true
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/tenants/update": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "tenant"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gxxmkwrn85edg"
+                    },
+                    "description": "the tenant to modify"
+                  },
+                  "tenant": {
+                    "$ref": "./g3/models/modify-tenant.json",
+                    "x-stoplight": {
+                      "id": "ukowd9t27ouvu"
+                    },
+                    "description": "the new values"
+                  }
+                }
+              },
+              "examples": {
+                "Tenant configured for webhooks": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "tenant": {
+                      "webhookUrl": "http://webhook.example.com",
+                      "webHookAuth": {
+                        "type": "bearer",
+                        "bearerToken": "HysE53p)1$"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update tenant",
+        "x-stoplight": {
+          "id": "ge1bnjwdypou2"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "tenant",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "tenant": {
+                      "$ref": "./g3/models/tenant.json",
+                      "x-stoplight": {
+                        "id": "mz4b9yjfyu1r7"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "3245hzstd3xd1"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Modified tenant": {
+                    "value": {
+                      "tenant": {
+                        "id": "669f15e3591256df06edee96",
+                        "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A",
+                        "name": "Alpha University",
+                        "description": "Alpha University is an esteemed institution....",
+                        "logo": "http://example.com/alpha-uni-logo-400x400.png",
+                        "keyMetadatas": [
+                          {
+                            "id": "669f15ad591256df06edee95",
+                            "purposes": [
+                              "DLT_TRANSACTIONS"
+                            ],
+                            "algorithm": "SECP256K1",
+                            "encoding": "hex",
+                            "kidFragment": "#key0",
+                            "createdAt": "2019-08-24T14:15:22Z"
+                          }
+                        ],
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2020-02-09T12:00:09Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-update",
+        "tags": [
+          "Tenants"
+        ]
+      },
+      "parameters": []
+    },
+    "/tenants/delete": {
+      "post": {
+        "summary": "Delete a tenant",
+        "tags": [
+          "Tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "1zn2horxsvfsp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-delete",
+        "x-stoplight": {
+          "id": "xb9wrynf34x5x"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1tuxtqunpzr42"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tenants/add-keys": {
+      "parameters": [],
+      "post": {
+        "summary": "Add tenant keys",
+        "tags": [
+          "Tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tenantId",
+                    "keyMetadatas",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "tenantId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9fhete6o2sbmg"
+                      }
+                    },
+                    "keyMetadatas": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "cbxhip8fdinhn"
+                      },
+                      "items": {
+                        "$ref": "./g3/models/key-metadata.json",
+                        "x-stoplight": {
+                          "id": "693zdo965q996"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "uaafb22tiszmb"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Key metadatas": {
+                    "value": {
+                      "tenantId": "669f15e3591256df06edee96",
+                      "keyMetadatas": [
+                        {
+                          "id": "669f15ad591256df06edee95",
+                          "purposes": [
+                            "DLT_TRANSACTIONS",
+                            "EXCHANGES",
+                            "ISSUING_METADATA"
+                          ],
+                          "algorithm": "SECP256K1",
+                          "encoding": "hex",
+                          "kidFragment": "#key0",
+                          "createdAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-add-keys",
+        "x-stoplight": {
+          "id": "zmcx6ypcvmcd2"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "keys"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "od3uswuefqmyg"
+                    }
+                  },
+                  "keys": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "mn1s06qkc52kr"
+                    },
+                    "items": {
+                      "$ref": "./g3/models/new-key.json",
+                      "x-stoplight": {
+                        "id": "ucadcj0enjecd"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "keys": [
+                      {
+                        "purposes": [
+                          "DLT_TRANSACTIONS",
+                          "EXCHANGES",
+                          "ISSUING_METADATA"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#key0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tenants/delete-keys": {
+      "post": {
+        "summary": "Delete tenant keys",
+        "tags": [
+          "Tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestid"
+                  ],
+                  "properties": {
+                    "requestid": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "amtn5t2lzb8br"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-delete-keys",
+        "x-stoplight": {
+          "id": "m1qrgt2e21s9c"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "keyIds"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "jnjhw5vkwcq1j"
+                    }
+                  },
+                  "keyIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "opz8ssv73w1a6"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "x-stoplight": {
+                        "id": "lcqmzgm8rp63f"
+                      },
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "keyIds": [
+                      "669f15ad591256df06edee95"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/issuer-services/create": {
+      "post": {
+        "summary": "Create issuer service",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/issuing-configuration.json",
+                      "x-stoplight": {
+                        "id": "8p1i3tjmmvwcc"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "2xpazik29xhno"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Batch issuing": {
+                    "value": {
+                      "service": {
+                        "id": "669f15e3591256df06edef80",
+                        "velocityNetworkServiceId": "#issuer-1",
+                        "authMethods": [
+                          "verifiable_presentation"
+                        ],
+                        "authMode": "rules",
+                        "offerMode": "preloaded",
+                        "termsUrl": "https://example.com/terms.html",
+                        "disclosureRequest": {
+                          "types": [
+                            {
+                              "type": "EmailV1.1"
+                            }
+                          ],
+                          "purpose": "Issuing employment credential",
+                          "retentionPeriod": "P30D"
+                        },
+                        "authRules": [
+                          {
+                            "path": [
+                              "$.email"
+                            ],
+                            "rule": "pick",
+                            "valueIndex": 0
+                          }
+                        ],
+                        "genericRedirectUrl": "http://example.com/landing_page.html",
+                        "authTokensExpireIn": 840000,
+                        "challengesExpireIn": 600,
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  },
+                  "Preauth codes": {
+                    "value": {
+                      "service": {
+                        "id": "669f15e3591256df06edef81",
+                        "velocityNetworkServiceId": "#issuer-1",
+                        "authMethods": [
+                          "preauth"
+                        ],
+                        "authMode": "rules",
+                        "offerMode": "preloaded",
+                        "authTokensExpireIn": 840000,
+                        "challengesExpireIn": 600,
+                        "termsUrl": "https://example.com/terms.html",
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  },
+                  "Webhook": {
+                    "value": {
+                      "service": {
+                        "id": "669f15e3591256df06edef82",
+                        "velocityNetworkServiceId": "#issuer-1",
+                        "authMethods": [
+                          "verifiable_presentation"
+                        ],
+                        "authMode": "webhook",
+                        "offerMode": "webhook",
+                        "authTokensExpireIn": 840000,
+                        "challengesExpireIn": 600,
+                        "termsUrl": "https://example.com/terms.html",
+                        "disclosureRequest": {
+                          "types": [
+                            {
+                              "type": "EmailV1.1"
+                            }
+                          ],
+                          "purpose": "Issuing employment credential",
+                          "retentionPeriod": "P30D"
+                        },
+                        "genericRedirectUrl": "http://example.com/landing_page.html",
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "issuer-services-create",
+        "x-stoplight": {
+          "id": "8gmmwuow83uxh"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "e6xq8f1nzyqd6"
+                    }
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-issuing-configuration.json",
+                    "x-stoplight": {
+                      "id": "c0rkzjveud6sf"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Batch issuing service": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "service": {
+                      "velocityNetworkServiceId": "#issuer-1",
+                      "authMethods": [
+                        "verifiable_presentation"
+                      ],
+                      "authMode": "rules",
+                      "offerMode": "preloaded",
+                      "authTokensExpireIn": 840000,
+                      "challengesExpireIn": 600,
+                      "termsUrl": "https://example.com/terms.html",
+                      "disclosureRequest": {
+                        "types": [
+                          {
+                            "type": "EmailV1.1"
+                          }
+                        ],
+                        "purpose": "Issuing employment credential",
+                        "retentionPeriod": "P30D"
+                      },
+                      "authRules": [
+                        {
+                          "path": [
+                            "$.email"
+                          ],
+                          "rule": "pick",
+                          "valueIndex": 0
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Preauth codes service": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "service": {
+                      "velocityNetworkServiceId": "#issuer-1",
+                      "authMethods": [
+                        "preauth"
+                      ],
+                      "authTokensExpireIn": 840000,
+                      "challengesExpireIn": 600,
+                      "authMode": "webhook",
+                      "offerMode": "webhook",
+                      "termsUrl": "https://example.com/terms.html"
+                    }
+                  }
+                },
+                "Webhook service": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "service": {
+                      "velocityNetworkServiceId": "#issuer-1",
+                      "authMethods": [
+                        "preauth"
+                      ],
+                      "authTokensExpireIn": 840000,
+                      "challengesExpireIn": 600,
+                      "authMode": "webhook",
+                      "offerMode": "webhook",
+                      "termsUrl": "https://example.com/terms.html"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Issuer Services"
+        ]
+      },
+      "parameters": []
+    },
+    "/issuer-services/get": {
+      "get": {
+        "summary": "Get issuer services",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "services",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "6mjhvnxg4atuy"
+                      },
+                      "items": {
+                        "$ref": "./g3/models/issuing-configuration.json",
+                        "x-stoplight": {
+                          "id": "mj7e1h9gzy8rk"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "98205y4vtb7dp"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "services": [
+                        {
+                          "id": "669f15e3591256df06edef80",
+                          "velocityNetworkServiceId": "#issuer-1",
+                          "authMethods": [
+                            "verifiable_presentation"
+                          ],
+                          "authMode": "rules",
+                          "offerMode": "preloaded",
+                          "authTokensExpireIn": 840000,
+                          "challengesExpireIn": 600,
+                          "termsUrl": "https://example.com/terms.html",
+                          "disclosureRequest": {
+                            "types": [
+                              {
+                                "type": "EmailV1.1"
+                              }
+                            ],
+                            "purpose": "Issuing employment credential",
+                            "retentionPeriod": "P30D"
+                          },
+                          "authRules": [
+                            {
+                              "path": [
+                                "$.email"
+                              ],
+                              "rule": "pick",
+                              "valueIndex": 0
+                            }
+                          ],
+                          "genericRedirectUrl": "http://example.com/landing_page.html",
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "issuer-services-get",
+        "x-stoplight": {
+          "id": "nezno6bi6kc2f"
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "serviceId",
+            "schema": {
+              "type": "array",
+              "items": {
+                "x-stoplight": {
+                  "id": "0z5d8lk8d8us4"
+                },
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Issuer Services"
+        ]
+      }
+    },
+    "/issuer-services/update": {
+      "post": {
+        "summary": "Update issuer services",
+        "tags": [
+          "Issuer Services"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/issuing-configuration.json",
+                      "x-stoplight": {
+                        "id": "xz64gxb4x4h1z"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "yi6q45siftya2"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "service": {
+                        "id": "669f15e3591256df06edef80",
+                        "velocityNetworkServiceId": "#issuer-1",
+                        "authMethods": [
+                          "verifiable_presentation"
+                        ],
+                        "authMode": "rules",
+                        "offerMode": "preloaded",
+                        "authTokensExpireIn": 840000,
+                        "challengesExpireIn": 600,
+                        "termsUrl": "https://example.com/terms.html",
+                        "disclosureRequest": {
+                          "types": [
+                            {
+                              "type": "PhoneV1.1"
+                            }
+                          ],
+                          "purpose": "Issuing employment credential",
+                          "retentionPeriod": "P30D"
+                        },
+                        "authRules": [
+                          {
+                            "path": [
+                              "$.phone"
+                            ],
+                            "rule": "pick",
+                            "valueIndex": 1
+                          }
+                        ],
+                        "genericRedirectUrl": "http://example.com/landing_page.html",
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2022-05-09T12:09:09Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "issuer-services-update",
+        "x-stoplight": {
+          "id": "1huunl4edfdak"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gcj89seolyzu2"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uw9xep00h6sc0"
+                    }
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-issuing-configuration.json",
+                    "x-stoplight": {
+                      "id": "jemut8oe1psmj"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Modify Batch Issuing Service": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "service": {
+                      "velocityNetworkServiceId": "#issuer-1",
+                      "authMethods": [
+                        "verifiable_presentation"
+                      ],
+                      "authMode": "rules",
+                      "offerMode": "preloaded",
+                      "termsUrl": "https://example.com/terms.html",
+                      "disclosureRequest": {
+                        "types": [
+                          {
+                            "type": "PhoneV1.1"
+                          }
+                        ],
+                        "purpose": "Issuing employment credential",
+                        "retentionPeriod": "P30D"
+                      },
+                      "authRules": [
+                        {
+                          "path": [
+                            "$.phone"
+                          ],
+                          "rule": "pick",
+                          "valueIndex": 1
+                        }
+                      ],
+                      "authTokensExpireIn": 840000,
+                      "challengesExpireIn": 600
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/issuer-services/delete": {
+      "post": {
+        "summary": "Delete issuer services",
+        "tags": [
+          "Issuer Services"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "1uunl2guddcr4"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "issuer-services-delete",
+        "x-stoplight": {
+          "id": "uphru6c89gn93"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceIds"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "tdo441906pwrf"
+                    }
+                  },
+                  "serviceIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "wvrz94ueyc8xj"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "x-stoplight": {
+                        "id": "4rs99d0tlru57"
+                      },
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceIds": [
+                      "669f15e3591256df06edef80"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/depots/create": {
+      "parameters": [],
+      "post": {
+        "summary": "Create depot",
+        "tags": [
+          "Depots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "depot",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "depot": {
+                      "$ref": "./g3/models/depot.json",
+                      "x-stoplight": {
+                        "id": "lauvy4mm262xx"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "v68tqmg3quvy3"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "depot": {
+                        "id": "669f15e3591256df06edeb15",
+                        "reference": "olivia.hafez@example.com",
+                        "serviceIds": [
+                          "669f15e3591256df06edef80"
+                        ],
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "depots-create",
+        "x-stoplight": {
+          "id": "o0mrnuedqel1o"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "depot"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "2zqolvxtms1mt"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "liq02a0weqsk9"
+                    }
+                  },
+                  "depot": {
+                    "$ref": "./g3/models/new-depot.json",
+                    "x-stoplight": {
+                      "id": "97qdx19jgcftq"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Simple depot example": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depot": {
+                      "reference": "olivia.hafez@example.com"
+                    }
+                  }
+                },
+                "Depot for Batch Issuing": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depot": {
+                      "reference": "olivia.hafez@example.com",
+                      "authValues": [
+                        "olivia.hafez@example.com",
+                        "+12565554151"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/depots/create-many": {
+      "post": {
+        "summary": "Create many depots",
+        "tags": [
+          "Depots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "depots",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "depots": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "93hljibdcjn3e"
+                      },
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "./g3/models/depot.json",
+                        "x-stoplight": {
+                          "id": "x4tmcr3ng2jjw"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "zffmdy45n3j0b"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "depots": [
+                        {
+                          "id": "669f15e3591256df06edeb15",
+                          "reference": "olivia.hafez@example.com",
+                          "serviceIds": [
+                            "669f15e3591256df06edef80"
+                          ],
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        },
+                        {
+                          "id": "669f15e3591256df06edeb16",
+                          "reference": "adam.smith@example.com",
+                          "serviceIds": [
+                            "669f15e3591256df06edef80"
+                          ],
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "depots-create-batch",
+        "x-stoplight": {
+          "id": "yyjofe1szj0wl"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "depots"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "221a11h5hkbv4"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "h1a17tfrhvol7"
+                    }
+                  },
+                  "depots": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "tlxr52j7ubp6o"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "./g3/models/new-depot.json",
+                      "x-stoplight": {
+                        "id": "po7qkd13mnnnn"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depots": [
+                      {
+                        "reference": "olivia.hafez@example.com"
+                      },
+                      {
+                        "reference": "adam.smith@example.com"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/depots/get": {
+      "parameters": [],
+      "get": {
+        "summary": "Get depots",
+        "x-stoplight": {
+          "id": "36e35df50324d"
+        },
+        "tags": [
+          "Depots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "depots",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "depots": {
+                      "x-stoplight": {
+                        "id": "v8hluzz4fsguq"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "./g3/models/depot.json",
+                        "x-stoplight": {
+                          "id": "efnj6jca58m7g"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "4blvj59gn7o8y"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "depots": [
+                        {
+                          "id": "669f15e3591256df06edeb15",
+                          "reference": "olivia.hafez@example.com",
+                          "serviceIds": [
+                            "669f15e3591256df06edef80"
+                          ],
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "depots-get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "24vc75wu1z2cy"
+              },
+              "example": "669f15e3591256df06edee96"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "serviceId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "bpo6fsuavstgs"
+              },
+              "example": "669f15e3591256df06edef80"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depotId",
+            "schema": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "aigmwvx5yo9x7"
+              },
+              "minItems": 1,
+              "items": {
+                "x-stoplight": {
+                  "id": "we610f99l9yqs"
+                },
+                "type": "string"
+              },
+              "example": [
+                "669f15e3591256df06edeb15"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/depots/update": {
+      "parameters": [],
+      "post": {
+        "summary": "Update depot",
+        "tags": [
+          "Depots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "depot",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "depot": {
+                      "$ref": "./g3/models/depot.json",
+                      "x-stoplight": {
+                        "id": "x9dv09icluo1c"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "cqxu6pmqf6amo"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "depot": {
+                        "id": "669f15e3591256df06edeb15",
+                        "reference": "olivia.hafez@test.com",
+                        "serviceIds": [
+                          "669f15e3591256df06edef80"
+                        ],
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2022-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "depots-update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "depotId",
+                  "depot"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "ujjjhv89r2aii"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "rufc3fyz9umj3"
+                    }
+                  },
+                  "depotId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "40uibdhkswibt"
+                    }
+                  },
+                  "depot": {
+                    "$ref": "./g3/models/new-depot.json",
+                    "x-stoplight": {
+                      "id": "58e94a84sdm6v"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "depotId": "669f15e3591256df06edeb15",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depot": {
+                      "reference": "olivia.hafez@test.com"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/depots/delete": {
+      "parameters": [],
+      "post": {
+        "summary": "Delete depot",
+        "tags": [
+          "Depots"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "jsztnemyuzvnb"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "depots-delete",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "depotIds"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1dp91vsdt11wi"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "x0haovi5etgec"
+                    }
+                  },
+                  "depotIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "3oep5733eaqjn"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "x-stoplight": {
+                        "id": "sxpu5eb7zq5ot"
+                      },
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Sample": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depotIds": [
+                      "669f15e3591256df06edeb15"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitations/refresh": {
+      "post": {
+        "summary": "Refresh invitations",
+        "tags": [
+          "Invitation"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "redirectUrl",
+                    "deepLink",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "redirectUrl": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "lsrlicx0osckf"
+                      },
+                      "description": "the redirect url used for directing to the landing pages"
+                    },
+                    "deepLink": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "fti6uynqc1j8a"
+                      },
+                      "description": "the deep link version used for building qr codes"
+                    },
+                    "preauthCode": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "jkzlg0did1xx0"
+                      },
+                      "description": "the latest preauth code if the issuing service uses preauth codes"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "pmx3y3y0s8vdv"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "redirectUrl": "https://acme.example.com?deeplink=velocity-network%3A%2F%2Fissue%3Frequest_uri%3Dhttp%253A%252F%252Flocalhost.test%252Fapi%252Fholder%252Fv0.6%252Forg%252Fdid%253Avelocity%253Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%252Finspect%252Fget-presentation-request%253Fid%253D64db2e649bbc8befd95944d9%26vendorOriginContext%3Dbfm53Ei6muJee0jHexXah8",
+                      "deepLink": "velocity-network://issue?request_uri=http%3A%2F%2Flocalhost.test%2Fapi%2Fholder%2Fv0.6%2Forg%2Fdid%3Avelocity%3Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%2Finspect%2Fget-presentation-request%3Fid%3D64db2e649bbc8befd95944d9&vendorOriginContext=bfm53Ei6muJee0jHexXah8",
+                      "preauthCode": "bfm53Ei6muJee0jHexXah8",
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "invitation-refresh",
+        "x-stoplight": {
+          "id": "l6aezsjgj1mfp"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "7mvcly4zw61vv"
+                    }
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "la8fl7rrdyv1s"
+                    }
+                  },
+                  "depotId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "byyfpx8ur4pkc"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depotId": "669f15e3591256df06edeb15"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
+    "/credentials/create-offer": {
+      "parameters": [],
+      "post": {
+        "summary": "Create credential offer",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "credential",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "credential": {
+                      "$ref": "./g3/models/credential.json",
+                      "x-stoplight": {
+                        "id": "jh8cb1yczwh8q"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "0chvdqg3tfsxl"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "credential": {
+                        "id": "669f15e3591256df06edf001",
+                        "depotId": "669f15e3591256df06edeb15",
+                        "reference": "skwqoc82kj(-ska",
+                        "tags": [
+                          "Feb2024Batch"
+                        ],
+                        "content": {
+                          "type": [
+                            "CurrentEmploymentPosition"
+                          ],
+                          "credentialSubject": {
+                            "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                            "companyName": {
+                              "localized": {
+                                "en": "Microsoft Corporation"
+                              }
+                            },
+                            "title": {
+                              "localized": {
+                                "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                              }
+                            },
+                            "startMonthYear": {
+                              "month": 10,
+                              "year": 2010
+                            },
+                            "endMonthYear": {
+                              "month": 6,
+                              "year": 2019
+                            },
+                            "location": {
+                              "countryCode": "US",
+                              "regionCode": "MA"
+                            },
+                            "description": {
+                              "localized": {
+                                "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                              }
+                            }
+                          }
+                        },
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "credentials-create-offer",
+        "x-stoplight": {
+          "id": "1xkx7fn0y2r1n"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "depotId",
+                  "credential"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gcndo9m2qe3qv"
+                    }
+                  },
+                  "depotId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "le6qhsnr0u9k8"
+                    },
+                    "description": "The existing depot to use. `if no `depot` is passed in, then `depotId` must be passed"
+                  },
+                  "credential": {
+                    "$ref": "./g3/models/new-credential-offer.json",
+                    "x-stoplight": {
+                      "id": "a7pvzem5m39aj"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Credential for an existing depot": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "depotId": "669f15e3591256df06edeb15",
+                    "credential": {
+                      "reference": "skwqoc82kj(-ska",
+                      "tags": [
+                        "Feb2024Batch"
+                      ],
+                      "content": {
+                        "type": [
+                          "CurrentEmploymentPosition"
+                        ],
+                        "credentialSubject": {
+                          "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                          "companyName": {
+                            "localized": {
+                              "en": "Microsoft Corporation"
+                            }
+                          },
+                          "title": {
+                            "localized": {
+                              "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                            }
+                          },
+                          "startMonthYear": {
+                            "month": 10,
+                            "year": 2010
+                          },
+                          "endMonthYear": {
+                            "month": 6,
+                            "year": 2019
+                          },
+                          "location": {
+                            "countryCode": "US",
+                            "regionCode": "MA"
+                          },
+                          "description": {
+                            "localized": {
+                              "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credentials/create-many-offers": {
+      "post": {
+        "summary": "Create many offers",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "credentials",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "credentials": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "sm79l8alaoie5"
+                      },
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "./g3/models/credential.json",
+                        "x-stoplight": {
+                          "id": "voqdp0pwzm9ju"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "y4m69bgmyunhf"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "credentials": [
+                        {
+                          "id": "669f15e3591256df06edf001",
+                          "depotId": "669f15e3591256df06edeb15",
+                          "reference": "skwqoc82kj(-ska",
+                          "tags": [
+                            "Feb2024Batch"
+                          ],
+                          "content": {
+                            "type": [
+                              "CurrentEmploymentPosition"
+                            ],
+                            "credentialSubject": {
+                              "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                              "companyName": {
+                                "localized": {
+                                  "en": "Microsoft Corporation"
+                                }
+                              },
+                              "title": {
+                                "localized": {
+                                  "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                                }
+                              },
+                              "startMonthYear": {
+                                "month": 10,
+                                "year": 2010
+                              },
+                              "endMonthYear": {
+                                "month": 6,
+                                "year": 2019
+                              },
+                              "location": {
+                                "countryCode": "US",
+                                "regionCode": "MA"
+                              },
+                              "description": {
+                                "localized": {
+                                  "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                                }
+                              }
+                            }
+                          },
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "credentials-create-many-offers",
+        "x-stoplight": {
+          "id": "8vikjp9ys7xs5"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "items"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "jzzpax9ek7voc"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "2faw2hif37ye1"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "x-stoplight": {
+                        "id": "jjtgxe87mvk1l"
+                      },
+                      "type": "object",
+                      "minProperties": 0,
+                      "required": [
+                        "depotId",
+                        "credential"
+                      ],
+                      "properties": {
+                        "depotId": {
+                          "type": "string",
+                          "x-stoplight": {
+                            "id": "gar6cvvuas149"
+                          }
+                        },
+                        "credential": {
+                          "$ref": "./g3/models/new-credential-offer.json",
+                          "x-stoplight": {
+                            "id": "bypr5z3peijjn"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "items": [
+                      {
+                        "depotId": "669f15e3591256df06edeb15",
+                        "credential": {
+                          "reference": "skwqoc82kj(-ska",
+                          "tags": [
+                            "Feb2024Batch"
+                          ],
+                          "content": {
+                            "type": [
+                              "CurrentEmploymentPosition"
+                            ],
+                            "credentialSubject": {
+                              "company": "did:ion:0xc257274276a4e539741ca11b590b9447b26a8051",
+                              "companyName": {
+                                "localized": {
+                                  "en": "Microsoft Corporation"
+                                }
+                              },
+                              "title": {
+                                "localized": {
+                                  "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                                }
+                              },
+                              "startMonthYear": {
+                                "month": 10,
+                                "year": 2010
+                              },
+                              "endMonthYear": {
+                                "month": 6,
+                                "year": 2019
+                              },
+                              "location": {
+                                "countryCode": "US",
+                                "regionCode": "MA"
+                              },
+                              "description": {
+                                "localized": {
+                                  "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credentials/get": {
+      "get": {
+        "summary": "Get credentials (inc. offers)",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "credentials",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "credentials": {
+                      "x-stoplight": {
+                        "id": "70u4iynsx3vdh"
+                      },
+                      "type": "array",
+                      "items": {
+                        "$ref": "./g3/models/credential.json",
+                        "x-stoplight": {
+                          "id": "fhoh5kcqo0i2h"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "uxw5yfdpv41iw"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "credentials": [
+                        {
+                          "id": "669f15e3591256df06edf001",
+                          "reference": "skwqoc82kj(-ska",
+                          "depotId": "669f15e3591256df06edeb15",
+                          "tags": [
+                            "Feb2024Batch"
+                          ],
+                          "content": {
+                            "type": [
+                              "CurrentEmploymentPosition"
+                            ],
+                            "credentialSubject": {
+                              "company": "did:velocity:0xc257274276a4e539741ca11b590b9447b26a8051",
+                              "companyName": {
+                                "localized": {
+                                  "en": "Microsoft Corporation"
+                                }
+                              },
+                              "title": {
+                                "localized": {
+                                  "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                                }
+                              },
+                              "startMonthYear": {
+                                "month": 10,
+                                "year": 2010
+                              },
+                              "endMonthYear": {
+                                "month": 6,
+                                "year": 2019
+                              },
+                              "location": {
+                                "countryCode": "US",
+                                "regionCode": "MA"
+                              },
+                              "description": {
+                                "localized": {
+                                  "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                                }
+                              }
+                            }
+                          },
+                          "createdAt": "2019-08-24T14:15:22Z",
+                          "updatedAt": "2019-08-24T14:15:22Z"
+                        }
+                      ],
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "credentials-get",
+        "x-stoplight": {
+          "id": "avj80qi2196tv"
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "2t2sf1jny9v2h"
+              },
+              "example": "669f15e3591256df06edee96"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "serviceId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "xp2ihb9p1aprn"
+              },
+              "example": "669f15e3591256df06edef80"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depotId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "b8vwzxcxn10ks"
+              },
+              "example": "669f15e3591256df06edeb15"
+            }
+          },
+          {
+            "in": "query",
+            "name": "issued",
+            "schema": {
+              "x-stoplight": {
+                "id": "16vr3emmwmtfe"
+              },
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "credentialId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "anpf8iw9fidzi"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "nzy9n5870u6m2"
+              },
+              "items": {
+                "x-stoplight": {
+                  "id": "a2wl0ohkab17h"
+                },
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "issuedBefore",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "5ffqh40lp8wj8"
+              },
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "issuedAfter",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "304nzks79ft9c"
+              },
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "createdBefore",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "f1sc5fdacpmh5"
+              },
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "createdAfter",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "s6udya53j4gy8"
+              },
+              "format": "date-time"
+            }
+          }
+        ]
+      }
+    },
+    "/credentials/update-offer": {
+      "post": {
+        "summary": "Update credential offer",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "credential",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "credential": {
+                      "$ref": "./g3/models/credential.json",
+                      "x-stoplight": {
+                        "id": "jh8cb1yczwh8q"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "f4q5nyzn6rcs8"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "credential": {
+                        "id": "669f15e3591256df06edf001",
+                        "reference": "skwqoc82kj(-ska",
+                        "depotId": "669f15e3591256df06edeb15",
+                        "tags": [
+                          "Feb2024Batch"
+                        ],
+                        "content": {
+                          "type": [
+                            "CurrentEmploymentPosition"
+                          ],
+                          "credentialSubject": {
+                            "company": "did:velocity:0xc257274276a4e539741ca11b590b9447b26a8051",
+                            "companyName": {
+                              "localized": {
+                                "en": "Microsoft Corporation"
+                              }
+                            },
+                            "title": {
+                              "localized": {
+                                "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                              }
+                            },
+                            "startMonthYear": {
+                              "month": 10,
+                              "year": 2010
+                            },
+                            "endMonthYear": {
+                              "month": 6,
+                              "year": 2019
+                            },
+                            "location": {
+                              "countryCode": "US",
+                              "regionCode": "MA"
+                            },
+                            "description": {
+                              "localized": {
+                                "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                              }
+                            }
+                          },
+                          "issuer": {
+                            "name": "ACME Corportation",
+                            "image": "https://example.com/image.png"
+                          }
+                        },
+                        "createdAt": "2019-08-24T14:15:22Z",
+                        "updatedAt": "2019-08-24T14:15:22Z"
+                      },
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-credentials-update-offer",
+        "x-stoplight": {
+          "id": "j2hk4biiwfzbu"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "credentialId",
+                  "credential"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "gcndo9m2qe3qv"
+                    }
+                  },
+                  "credentialId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "tumxrr99ju6ds"
+                    }
+                  },
+                  "credential": {
+                    "$ref": "./g3/models/new-credential-offer.json",
+                    "x-stoplight": {
+                      "id": "a7pvzem5m39aj"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "credentialId": "669f15e3591256df06edf001",
+                    "credential": {
+                      "reference": "skwqoc82kj(-ska",
+                      "tags": [
+                        "Feb2024Batch"
+                      ],
+                      "content": {
+                        "type": [
+                          "CurrentEmploymentPosition"
+                        ],
+                        "credentialSubject": {
+                          "company": "did:velocity:0xc257274276a4e539741ca11b590b9447b26a8051",
+                          "companyName": {
+                            "localized": {
+                              "en": "Microsoft Corporation"
+                            }
+                          },
+                          "title": {
+                            "localized": {
+                              "en": "Director, Communications (HoloLens & Mixed Reality Experiences)"
+                            }
+                          },
+                          "startMonthYear": {
+                            "month": 10,
+                            "year": 2010
+                          },
+                          "endMonthYear": {
+                            "month": 6,
+                            "year": 2019
+                          },
+                          "location": {
+                            "countryCode": "US",
+                            "regionCode": "MA"
+                          },
+                          "description": {
+                            "localized": {
+                              "en": "Big Data, AI, Hybrid, IoT, Datacenter, Mixed Reality/HoloLens, D365, Power Platform - all kinds of fun stuff!"
+                            }
+                          }
+                        },
+                        "issuer": {
+                          "name": "ACME Corportation",
+                          "image": "https://example.com/image.png"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credentials/delete-offers": {
+      "post": {
+        "summary": "Delete credential offers",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "ytirembrlxtae"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-credentials-delete-offers",
+        "x-stoplight": {
+          "id": "tkhz40cx3p99w"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "credentialIds"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "96af39ofu0a6i"
+                    }
+                  },
+                  "credentialIds": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "5f55l8fbe7ld8"
+                    },
+                    "minItems": 1,
+                    "items": {
+                      "x-stoplight": {
+                        "id": "3e5mryv9zuivg"
+                      },
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Sample": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "credentialIds": [
+                      "669f15e3591256df06edf001"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credentials/revoke": {
+      "post": {
+        "summary": "Revoke credentials",
+        "tags": [
+          "Credentials"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "l1qdto14uee70"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-credentials-revoke",
+        "x-stoplight": {
+          "id": "teizqwxu86wjp"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "credentialId",
+                  "reasonCode"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "1dwm25fhm2j7t"
+                    }
+                  },
+                  "credentialId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "9g2ovvkfmhjxj"
+                    }
+                  },
+                  "reasonCode": {
+                    "x-stoplight": {
+                      "id": "lw17fa3slc8h6"
+                    },
+                    "enum": [
+                      "expired",
+                      "replacement",
+                      "planned",
+                      "unplanned"
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Sample": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "credentialId": "669f15e3591256df06edf001",
+                    "reasonCode": "replacement"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/relying-party-services/create": {
+      "post": {
+        "summary": "Create relying party service",
+        "responses": {},
+        "operationId": "post-rp-services-create",
+        "x-stoplight": {
+          "id": "g4f86frnt5yiw"
+        },
+        "tags": [
+          "Relying Party Services"
+        ]
+      },
+      "parameters": []
+    },
+    "/relying-party-services/get": {
+      "get": {
+        "summary": "Get relying party service",
+        "tags": [
+          "Relying Party Services"
+        ],
+        "responses": {},
+        "operationId": "relying-party-services-get",
+        "x-stoplight": {
+          "id": "tv1c1mo4p7gdt"
+        },
+        "description": ""
+      }
+    },
+    "/relying-party-services/update": {
+      "post": {
+        "summary": "Update relying party service",
+        "tags": [
+          "Relying Party Services"
+        ],
+        "responses": {},
+        "operationId": "relying-party-services-update",
+        "x-stoplight": {
+          "id": "i25rplqfe76wi"
+        }
+      }
+    },
+    "/relying-party-services/delete": {
+      "post": {
+        "summary": "Delete relying party service",
+        "tags": [
+          "Relying Party Services"
+        ],
+        "responses": {},
+        "operationId": "relying-party-services-delete",
+        "x-stoplight": {
+          "id": "m4hgn3zj49p78"
+        }
+      }
+    },
+    "/presentations/get": {
+      "get": {
+        "summary": "Get Presentations",
+        "tags": [
+          "Presentations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "presentations": {
+                      "$ref": "./g3/models/presentiation.json",
+                      "x-stoplight": {
+                        "id": "40lqo5mj6ncap"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "xogonf3p9m194"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-presentations-get",
+        "x-stoplight": {
+          "id": "3jwj24hl9gl63"
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "b06itl9z5t0rr"
+              }
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "serviceId",
+            "schema": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "j0b11wphoa48t"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "depotId",
+            "schema": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "tcpds74n96x1b"
+              },
+              "items": {
+                "x-stoplight": {
+                  "id": "xfwn2l4ivog7z"
+                },
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "presentationId",
+            "schema": {
+              "type": "array",
+              "x-stoplight": {
+                "id": "ozsipq3gbsz1m"
+              },
+              "items": {
+                "x-stoplight": {
+                  "id": "hti44uu9r1keo"
+                },
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "/presentations/verify": {
+      "post": {
+        "summary": "Verify presentation",
+        "tags": [
+          "Presentations"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "verified",
+                    "content",
+                    "detail",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "verified": {
+                      "type": "boolean",
+                      "x-stoplight": {
+                        "id": "s95cg7pkendqa"
+                      }
+                    },
+                    "content": {
+                      "$ref": "./g3/models/presentation-content.json",
+                      "x-stoplight": {
+                        "id": "u3iy9svxu3idz"
+                      }
+                    },
+                    "detail": {
+                      "type": "object",
+                      "x-stoplight": {
+                        "id": "8auxegv8e12f5"
+                      },
+                      "properties": {
+                        "overallChecks": {
+                          "$ref": "./g3/models/checks.json",
+                          "x-stoplight": {
+                            "id": "o4u34cs09nboy"
+                          }
+                        },
+                        "verifiablePresentationChecks": {
+                          "$ref": "./g3/models/checks.json",
+                          "x-stoplight": {
+                            "id": "vcltbyqxuyjah"
+                          }
+                        },
+                        "verfiableCredentials": {
+                          "type": "array",
+                          "x-stoplight": {
+                            "id": "g28oeg57pbx2i"
+                          },
+                          "items": {
+                            "x-stoplight": {
+                              "id": "c0pjn6vwaxzej"
+                            },
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "x-stoplight": {
+                                  "id": "e00gvfd5cnpv5"
+                                }
+                              },
+                              "checks": {
+                                "$ref": "./g3/models/checks.json",
+                                "x-stoplight": {
+                                  "id": "9guv3htrwy5wz"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "carkxbv9mq6n6"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post-presentations-verify",
+        "x-stoplight": {
+          "id": "1d9w4x3wp3kmi"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "2xkdc7cb6f8nw"
+                    }
+                  },
+                  "presentationid": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "wwl3hfhkhvjuf"
+                    },
+                    "description": "one of presentationid or prsentation must be passed in"
+                  },
+                  "vpJwt": {
+                    "x-stoplight": {
+                      "id": "wuayij3a72fyn"
+                    },
+                    "type": "string"
+                  },
+                  "rules": {
+                    "type": "array",
+                    "x-stoplight": {
+                      "id": "uaue6o3zqgts0"
+                    },
+                    "description": "optional set of rules to determine if credentials pass verification",
+                    "items": {
+                      "x-stoplight": {
+                        "id": "p2ehg5tki9uta"
+                      },
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "title": "depot",
+  "x-stoplight": {
+    "id": "dvcsvht8r0svf"
+  },
+  "required": [
+    "id",
+    "reference",
+    "serviceIds",
+    "createdAt",
+    "updatedAt"
+  ],
+  "allOf": [
+    {
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "qk948sv53ls0k"
+      }
+    },
+    {
+      "$ref": "./new-depot.json",
+      "x-stoplight": {
+        "id": "gggqzcjl0do1u"
+      }
+    },
+    {
+      "type": "object",
+      "properties": {
+        "serviceId": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "rb951x6lnm6af"
+          },
+          "description": "the serviceId this depot is used for"
+        },
+        "messagingSettings": {
+          "type": "object",
+          "x-stoplight": {
+            "id": "1yrjcjxff2jg5"
+          },
+          "description": "the wallet messaging settings",
+          "properties": {
+            "webhookUrl": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "0h4fe7otbj577"
+              }
+            },
+            "authToken": {
+              "type": "string",
+              "x-stoplight": {
+                "id": "uzk8r2ed6ywec"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

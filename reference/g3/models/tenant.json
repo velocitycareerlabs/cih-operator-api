@@ -1,0 +1,98 @@
+{
+  "title": "tenant",
+  "x-stoplight": {
+    "id": "efxoiq1yh96cp"
+  },
+  "allOf": [
+    {
+      "$ref": "./new-tenant.json",
+      "x-stoplight": {
+        "id": "dykpjo0lehcx6"
+      }
+    },
+    {
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "9utm7cfo2shhj"
+      }
+    },
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "3o1wvnthg8ifv"
+      },
+      "properties": {
+        "logo": {
+          "type": "string",
+          "format": "uri",
+          "x-stoplight": {
+            "id": "9k1zwe9w69vlm"
+          }
+        },
+        "name": {
+          "type": "string",
+          "description": "did for the org",
+          "x-stoplight": {
+            "id": "eoxep3f7xk2mq"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "did for the org",
+          "x-stoplight": {
+            "id": "t71udfpewknfe"
+          }
+        },
+        "credentialTypesIssued": {
+          "type": "array",
+          "description": "credential types that are issued",
+          "x-stoplight": {
+            "id": "clnguawpkhrrd"
+          },
+          "items": {
+            "type": "string",
+            "x-stoplight": {
+              "id": "eu01jo8jqmhw1"
+            }
+          }
+        },
+        "keyMetadatas": {
+          "type": "array",
+          "description": "metadatas of the keys",
+          "x-stoplight": {
+            "id": "xjvxu38brrayv"
+          },
+          "items": {
+            "$ref": "./key-metadata.json",
+            "x-stoplight": {
+              "id": "6tzcd4odxy8qv"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "did": "did:ion:129031903190239123021312",
+      "id": "5fsdflkdsfsdfsfwwerr",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z",
+      "logo": "http://example.com/logo.com",
+      "name": "ACME Limited",
+      "keyMetadatas": [
+        {
+          "purposes": [
+            "DLT_TRANSACTIONS"
+          ],
+          "algorithm": "SECP256K1",
+          "encoding": "hex",
+          "kidFragment": "#key-1",
+          "id": "5fdklsfsdfadfsd",
+          "createdAt": "2019-08-24T14:15:22Z"
+        }
+      ],
+      "webhookUrl": "http://example.com/webhooks"
+    }
+  ]
+}

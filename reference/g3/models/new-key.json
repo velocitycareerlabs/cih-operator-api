@@ -1,0 +1,20 @@
+{
+  "title": "new-key",
+  "x-stoplight": {
+    "id": "2vkfq2dtimyaj"
+  },
+  "allOf": [
+    {
+      "$ref": "../../common/models/new-key-metadata.v1.json",
+      "x-stoplight": {
+        "id": "gk6a3z5c91ak7"
+      }
+    },
+    {
+      "$ref": "./secret-key.json",
+      "x-stoplight": {
+        "id": "cs03dyvobj8g6"
+      }
+    }
+  ]
+}

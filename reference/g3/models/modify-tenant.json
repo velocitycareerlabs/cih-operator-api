@@ -1,0 +1,41 @@
+{
+  "title": "modify-tenant",
+  "x-stoplight": {
+    "id": "pdqkx7tb2tb01"
+  },
+  "type": "object",
+  "x-tags": [
+    "tenants"
+  ],
+  "properties": {
+    "webhookUrl": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "dqlhp2sigl3mr"
+      },
+      "format": "uri"
+    },
+    "webhookAuth": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "qgycgwezz1qma"
+      },
+      "properties": {
+        "type": {
+          "x-stoplight": {
+            "id": "mckj6mu8y5hqf"
+          },
+          "enum": [
+            "bearer"
+          ]
+        },
+        "bearerToken": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "j4v9shxc5agex"
+          }
+        }
+      }
+    }
+  }
+}

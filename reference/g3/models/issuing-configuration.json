@@ -1,0 +1,77 @@
+{
+  "title": "issuing-configuration",
+  "x-stoplight": {
+    "id": "whpw5o5vcaybt"
+  },
+  "description": "The issuing configuration",
+  "allOf": [
+    {
+      "$ref": "./modify-issuing-configuration.json",
+      "x-stoplight": {
+        "id": "r7urcp3zyfr55"
+      }
+    },
+    {
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "06lyvmhkmdmlb"
+      }
+    },
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "fisf1xzgx7nib"
+      },
+      "properties": {
+        "genericRedirectUrl": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "damv47aa6ki8o"
+          },
+          "format": "uri",
+          "description": "only returned if authMethod include `verifiable_presentation`"
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "velocityNetworkServiceId",
+    "authMethods",
+    "authMode",
+    "offerMode",
+    "termsUrl",
+    "createdAt",
+    "updatedAt"
+  ],
+  "examples": [
+    {
+      "id": "5fioaderwu12eureq9ru",
+      "createdAt": "2022-08-09T16:43:55.000Z",
+      "updatedAt": "2022-08-09T16:43:55.000Z",
+      "authMethods": [
+        "verifiable_presentation"
+      ],
+      "authMode": "rules",
+      "offerMode": "preloaded",
+      "termsUrl": "https://example.com/terms.html",
+      "disclosureRequest": {
+        "types": "[ { \"type\": \"PastEmploymentPosition\"}, { \"type\":  \"CurrentEmploymentPosition\"}, { \"type\": \"EducationDegree\"} ]",
+        "purpose": "Issuing employment credential",
+        "duration": "P30D"
+      },
+      "authRules": {
+        "rules": [
+          {
+            "path": [
+              "$.email"
+            ],
+            "rule": "pick",
+            "valueIndex": 0
+          }
+        ],
+        "vendorUserIdIndex": 524
+      }
+    }
+  ]
+}

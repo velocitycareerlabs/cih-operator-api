@@ -1,0 +1,178 @@
+{
+  "title": "new-inspection-configuration",
+  "x-stoplight": {
+    "id": "abd5b87acb607"
+  },
+  "type": "object",
+  "description": "The inspection configuration for the inspector. It describes credential types wanted and (in the future) predicate information as well as terms and conditions for usage of the data",
+  "examples": [
+    {
+      "verifyCredentials": "true",
+      "disclosureRequest": {
+        "types": [
+          {
+            "type": "PastEmploymentPosition"
+          },
+          {
+            "type": "CurrentEmploymentPosition"
+          },
+          {
+            "type": "EducationDegree"
+          }
+        ],
+        "purpose": "job application",
+        "duration": "P3M"
+      },
+      "termsUrl": "string",
+      "sendPushOnVerification": false
+    }
+  ],
+  "required": [
+    "velocityNetworkServiceId",
+    "termsUrl",
+    "disclosureRequest"
+  ],
+  "properties": {
+    "velocityNetworkServiceId": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "ujjnoquvv35ai"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "Description field for this inspection configuration",
+      "x-stoplight": {
+        "id": "10u8nkoj2rdvq"
+      }
+    },
+    "commercialEntity": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "zctz7m7nx0yrl"
+      },
+      "description": "overriding branding to use when representing this inspection service",
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "tbglxqg4jyqd6"
+          }
+        },
+        "logo": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "h215pcdzc1vt8"
+          },
+          "format": "uri"
+        }
+      }
+    },
+    "termsUrl": {
+      "type": "string",
+      "description": "link to a online terms and coniditions for issuing or disclosure",
+      "x-stoplight": {
+        "id": "mr0dnxa50sccg"
+      }
+    },
+    "disclosureRequest": {
+      "x-stoplight": {
+        "id": "obpw8smabcw7q"
+      },
+      "type": "object",
+      "required": [
+        "types",
+        "purpose",
+        "duration"
+      ],
+      "properties": {
+        "types": {
+          "type": "array",
+          "x-stoplight": {
+            "id": "n1a4pmdmvvtq3"
+          },
+          "description": "the set of types that are to be disclosed.",
+          "example": "[ { \"type\": \"PastEmploymentPosition\"}, { \"type\":  \"CurrentEmploymentPosition\"}, { \"type\": \"EducationDegree\"} ]",
+          "minItems": 1,
+          "items": {
+            "x-stoplight": {
+              "id": "rx35shu5cj9xl"
+            },
+            "type": "object",
+            "minProperties": 0,
+            "properties": {
+              "type": {
+                "type": "string",
+                "x-stoplight": {
+                  "id": "ytk28g80rkq73"
+                },
+                "description": "type is the credential type to be disclosed."
+              }
+            }
+          }
+        },
+        "purpose": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "qlmkcu19r8bfw"
+          },
+          "description": "purpose is a summary of the description."
+        },
+        "duration": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "ovwch2wjx4q1w"
+          },
+          "format": "duration",
+          "example": "P60D",
+          "description": "Length of time the disclosure agreement will last. Duration can be any length of time.\r\n\r\nFollows the ISO 8601 standard on durations for time intervals.\r\n\r\nFormat:\r\n\r\nPxYxMxWxD\r\n\r\nWhere:\r\nx = an integer\r\nY = Years\r\nM = Months\r\nW = Weeks\r\nD = Days\r\n\r\nA valid format requires \"P\" plus at least one integer and time unit.\r\n\r\nExamples: \r\nP60D = 60 days\r\nP1Y30D = 1 year and 30 days."
+        }
+      }
+    },
+    "presentationDefinition": {
+      "type": "object",
+      "description": "A spec compliant presentation definition. https://identity.foundation/presentation-exchange/#presentation-definition",
+      "x-stoplight": {
+        "id": "fpp8htnqcp1g8"
+      }
+    },
+    "deactivationDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "can be configured to deactivate at a predetermined time or to be deactivated on demand by setting this to now",
+      "x-stoplight": {
+        "id": "0ni8t8x303yhm"
+      }
+    },
+    "authTokensExpireIn": {
+      "type": "number",
+      "x-stoplight": {
+        "id": "m76vst1p19ja5"
+      }
+    },
+    "feed": {
+      "type": "boolean",
+      "x-stoplight": {
+        "id": "isg4xu0io3vdv"
+      },
+      "description": "whether this service is being setup for continuous feeds",
+      "default": false
+    },
+    "automaticallyVerify": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the presentation and credentials will be checked as part of the inspection flow",
+      "x-stoplight": {
+        "id": "w3hmav5uqhxi5"
+      }
+    },
+    "sendPushOnVerification": {
+      "type": "boolean",
+      "description": "whether a push notification should be sent when verification occurs. defaults to false",
+      "default": false,
+      "x-stoplight": {
+        "id": "tiynaoerut7lz"
+      }
+    }
+  }
+}

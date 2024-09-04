@@ -1,0 +1,42 @@
+{
+  "title": "presentiation",
+  "x-stoplight": {
+    "id": "11gsl5kjsitk8"
+  },
+  "allOf": [
+    {
+      "$ref": "../../common/models/immutable-record.v1.json"
+    },
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "gvwwzfzc9pz2t"
+      },
+      "required": [
+        "depotId",
+        "vpJwt",
+        "content"
+      ],
+      "properties": {
+        "depotId": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "0ng4lsmja4xle"
+          }
+        },
+        "vpJwt": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "rdwwfjd7cjmde"
+          }
+        },
+        "content": {
+          "$ref": "./presentation-content.json",
+          "x-stoplight": {
+            "id": "2hpop1546w6rw"
+          }
+        }
+      }
+    }
+  ]
+}

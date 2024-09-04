@@ -1,0 +1,43 @@
+{
+  "title": "inspection-configuration",
+  "x-stoplight": {
+    "id": "3872afe3d8196"
+  },
+  "description": "The inspection configuration",
+  "allOf": [
+    {
+      "$ref": "./modify-inspection-configuration.json",
+      "x-stoplight": {
+        "id": "qy2hb46wqfpwl"
+      }
+    },
+    {
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "5uburhzruwhlk"
+      }
+    },
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "lxccwmlp6z3ly"
+      },
+      "properties": {
+        "genericRedirectUrl": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "lr3ute21bdg90"
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "disclosureRequest",
+    "termsUrl",
+    "genericRedirectUrl",
+    "createdAt",
+    "updatedAt"
+  ]
+}
