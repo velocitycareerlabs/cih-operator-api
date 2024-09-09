@@ -1,12 +1,6 @@
 {
   "allOf": [
     {
-      "$ref": "./modify-tenant.json",
-      "x-stoplight": {
-        "id": "ohjtssrj4u4kl"
-      }
-    },
-    {
       "type": "object",
       "properties": {
         "did": {

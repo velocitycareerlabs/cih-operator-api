@@ -10,8 +10,7 @@
       "authMethods": [
         "verifiable_presentation"
       ],
-      "authMode": "rules",
-      "offerMode": "preloaded",
+      "authMode": "rulesEngine",
       "termsUrl": "https://example.com/terms.html",
       "disclosureRequest": {
         "types": [
@@ -46,7 +45,6 @@
         "preauth"
       ],
       "authMode": "webhook",
-      "offerMode": "webhook",
       "termsUrl": "https://example.com/terms.html",
       "description": "string"
     },
@@ -55,7 +53,6 @@
         "verifiable_presentation"
       ],
       "authMode": "webhook",
-      "offerMode": "webhook",
       "termsUrl": "https://example.com/terms.html",
       "disclosure": {
         "types": [
@@ -80,6 +77,7 @@
     "termsUrl",
     "authTokensExpireIn",
     "authMethods",
+    "authMode",
     "challengesExpireIn"
   ],
   "properties": {
@@ -110,6 +108,10 @@
       "x-stoplight": {
         "id": "pt3x31o151ngf"
       },
+      "required": [
+        "name",
+        "logo"
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -221,8 +223,17 @@
         }
       }
     },
+    "authMode": {
+      "x-stoplight": {
+        "id": "1m2tkstx1if3z"
+      },
+      "enum": [
+        "rulesEngine"
+      ],
+      "description": "the auth mode. Currently only `rulesEngine` is supported"
+    },
     "authRules": {
-      "description": "authRules are the matcher rules that can be used to match an exchange with submitted identification method. Required if authMode is `rules`",
+      "description": "authRules are the matcher rules that can be used to match an exchange with submitted identification method. Required if authMode is `rulesEngine`",
       "type": "array",
       "x-stoplight": {
         "id": "v3nixqvzab81j"
