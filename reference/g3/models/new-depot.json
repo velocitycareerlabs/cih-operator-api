@@ -5,15 +5,15 @@
   },
   "type": "object",
   "required": [
-    "reference"
+    "userReference"
   ],
   "properties": {
-    "reference": {
+    "userReference": {
       "type": "string",
       "x-stoplight": {
         "id": "v7i1ej0mttcfr"
       },
-      "description": "The unique internal reference for this depot. Typically a employee or student id of the system"
+      "description": "The unique internal user reference for this depot. Typically a employee or student id of the system"
     },
     "authValues": {
       "type": "array",

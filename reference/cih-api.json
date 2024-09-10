@@ -1168,7 +1168,7 @@
                     "value": {
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
-                        "reference": "olivia.hafez@example.com",
+                        "userReference": "olivia.hafez@example.com",
                         "serviceIds": [
                           "669f15e3591256df06edef80"
                         ],
@@ -1224,7 +1224,7 @@
                     "tenantId": "669f15e3591256df06edee96",
                     "serviceId": "669f15e3591256df06edef80",
                     "depot": {
-                      "reference": "olivia.hafez@example.com"
+                      "userReference": "olivia.hafez@example.com"
                     }
                   }
                 },
@@ -1233,7 +1233,7 @@
                     "tenantId": "669f15e3591256df06edee96",
                     "serviceId": "669f15e3591256df06edef80",
                     "depot": {
-                      "reference": "olivia.hafez@example.com",
+                      "userReference": "olivia.hafez@example.com",
                       "authValues": [
                         "olivia.hafez@example.com",
                         "+12565554151"
@@ -1292,7 +1292,7 @@
                       "depots": [
                         {
                           "id": "669f15e3591256df06edeb15",
-                          "reference": "olivia.hafez@example.com",
+                          "userReference": "olivia.hafez@example.com",
                           "serviceIds": [
                             "669f15e3591256df06edef80"
                           ],
@@ -1301,7 +1301,7 @@
                         },
                         {
                           "id": "669f15e3591256df06edeb16",
-                          "reference": "adam.smith@example.com",
+                          "userReference": "adam.smith@example.com",
                           "serviceIds": [
                             "669f15e3591256df06edef80"
                           ],
@@ -1366,10 +1366,10 @@
                     "serviceId": "669f15e3591256df06edef80",
                     "depots": [
                       {
-                        "reference": "olivia.hafez@example.com"
+                        "userReference": "olivia.hafez@example.com"
                       },
                       {
-                        "reference": "adam.smith@example.com"
+                        "userReference": "adam.smith@example.com"
                       }
                     ]
                   }
@@ -1429,7 +1429,7 @@
                       "depots": [
                         {
                           "id": "669f15e3591256df06edeb15",
-                          "reference": "olivia.hafez@example.com",
+                          "userReference": "olivia.hafez@example.com",
                           "serviceIds": [
                             "669f15e3591256df06edef80"
                           ],
@@ -1531,7 +1531,7 @@
                     "value": {
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
-                        "reference": "olivia.hafez@test.com",
+                        "userReference": "olivia.hafez@test.com",
                         "serviceIds": [
                           "669f15e3591256df06edef80"
                         ],
@@ -1592,7 +1592,7 @@
                     "depotId": "669f15e3591256df06edeb15",
                     "serviceId": "669f15e3591256df06edef80",
                     "depot": {
-                      "reference": "olivia.hafez@test.com"
+                      "userReference": "olivia.hafez@test.com"
                     }
                   }
                 }
@@ -1837,7 +1837,7 @@
                       "credential": {
                         "id": "669f15e3591256df06edf001",
                         "depotId": "669f15e3591256df06edeb15",
-                        "reference": "skwqoc82kj(-ska",
+                        "credentialReference": "skwqoc82kj(-ska",
                         "tags": [
                           "Feb2024Batch"
                         ],
@@ -1929,7 +1929,7 @@
                     "tenantId": "669f15e3591256df06edee96",
                     "depotId": "669f15e3591256df06edeb15",
                     "credential": {
-                      "reference": "skwqoc82kj(-ska",
+                      "credentialReference": "skwqoc82kj(-ska",
                       "tags": [
                         "Feb2024Batch"
                       ],
@@ -2023,7 +2023,7 @@
                         {
                           "id": "669f15e3591256df06edf001",
                           "depotId": "669f15e3591256df06edeb15",
-                          "reference": "skwqoc82kj(-ska",
+                          "credentialReference": "skwqoc82kj(-ska",
                           "tags": [
                             "Feb2024Batch"
                           ],
@@ -2137,7 +2137,7 @@
                       {
                         "depotId": "669f15e3591256df06edeb15",
                         "credential": {
-                          "reference": "skwqoc82kj(-ska",
+                          "credentialReference": "skwqoc82kj(-ska",
                           "tags": [
                             "Feb2024Batch"
                           ],
@@ -2231,7 +2231,7 @@
                       "credentials": [
                         {
                           "id": "669f15e3591256df06edf001",
-                          "reference": "skwqoc82kj(-ska",
+                          "credentialReference": "skwqoc82kj(-ska",
                           "depotId": "669f15e3591256df06edeb15",
                           "tags": [
                             "Feb2024Batch"
@@ -2442,7 +2442,7 @@
                     "value": {
                       "credential": {
                         "id": "669f15e3591256df06edf001",
-                        "reference": "skwqoc82kj(-ska",
+                        "credentialReference": "skwqoc82kj(-ska",
                         "depotId": "669f15e3591256df06edeb15",
                         "tags": [
                           "Feb2024Batch"
@@ -2538,7 +2538,7 @@
                     "tenantId": "669f15e3591256df06edee96",
                     "credentialId": "669f15e3591256df06edf001",
                     "credential": {
-                      "reference": "skwqoc82kj(-ska",
+                      "credentialReference": "skwqoc82kj(-ska",
                       "tags": [
                         "Feb2024Batch"
                       ],
