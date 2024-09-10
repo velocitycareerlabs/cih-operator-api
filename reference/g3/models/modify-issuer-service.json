@@ -1,5 +1,5 @@
 {
-  "title": "new-issuing-configuration",
+  "title": "new-issuer-service",
   "x-stoplight": {
     "id": "9500bb10d51b0"
   },
@@ -73,7 +73,7 @@
     }
   ],
   "required": [
-    "velocityNetworkServiceId",
+    "didServiceId",
     "termsUrl",
     "authTokensExpireIn",
     "authMethods",
@@ -81,12 +81,12 @@
     "challengesExpireIn"
   ],
   "properties": {
-    "velocityNetworkServiceId": {
+    "didServiceId": {
       "type": "string",
       "x-stoplight": {
         "id": "z690os6ocke6q"
       },
-      "description": "Velocity Network Service Id"
+      "description": "DID Service Id"
     },
     "description": {
       "type": "string",
@@ -264,7 +264,7 @@
           },
           "rule": {
             "type": "string",
-            "description": "the rule to run. ONly pick is supported right ow",
+            "description": "the rule to run. Only pick is supported right now",
             "enum": [
               "pick",
               "equal"

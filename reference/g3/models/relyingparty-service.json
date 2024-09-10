@@ -1,12 +1,12 @@
 {
-  "title": "inspection-configuration",
+  "title": "relyingparty-service",
   "x-stoplight": {
     "id": "3872afe3d8196"
   },
   "description": "The inspection configuration",
   "allOf": [
     {
-      "$ref": "./modify-inspection-configuration.json",
+      "$ref": "./modify-relyingparty-service.json",
       "x-stoplight": {
         "id": "qy2hb46wqfpwl"
       }

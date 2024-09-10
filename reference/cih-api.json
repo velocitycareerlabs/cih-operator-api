@@ -575,7 +575,7 @@
                   ],
                   "properties": {
                     "service": {
-                      "$ref": "./g3/models/issuing-configuration.json",
+                      "$ref": "./g3/models/issuer-service.json",
                       "x-stoplight": {
                         "id": "8p1i3tjmmvwcc"
                       }
@@ -701,7 +701,7 @@
                     }
                   },
                   "service": {
-                    "$ref": "./g3/models/modify-issuing-configuration.json",
+                    "$ref": "./g3/models/modify-issuer-service.json",
                     "x-stoplight": {
                       "id": "c0rkzjveud6sf"
                     }
@@ -806,7 +806,7 @@
                         "id": "6mjhvnxg4atuy"
                       },
                       "items": {
-                        "$ref": "./g3/models/issuing-configuration.json",
+                        "$ref": "./g3/models/issuer-service.json",
                         "x-stoplight": {
                           "id": "mj7e1h9gzy8rk"
                         }
@@ -917,7 +917,7 @@
                   ],
                   "properties": {
                     "service": {
-                      "$ref": "./g3/models/issuing-configuration.json",
+                      "$ref": "./g3/models/issuer-service.json",
                       "x-stoplight": {
                         "id": "xz64gxb4x4h1z"
                       }
@@ -1002,7 +1002,7 @@
                     }
                   },
                   "service": {
-                    "$ref": "./g3/models/modify-issuing-configuration.json",
+                    "$ref": "./g3/models/modify-issuer-service.json",
                     "x-stoplight": {
                       "id": "jemut8oe1psmj"
                     }

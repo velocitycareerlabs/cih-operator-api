@@ -1,5 +1,5 @@
 {
-  "title": "new-inspection-configuration",
+  "title": "new-relyingparty-service",
   "x-stoplight": {
     "id": "abd5b87acb607"
   },
@@ -28,16 +28,17 @@
     }
   ],
   "required": [
-    "velocityNetworkServiceId",
+    "didServiceId",
     "termsUrl",
     "disclosureRequest"
   ],
   "properties": {
-    "velocityNetworkServiceId": {
+    "didServiceId": {
       "type": "string",
       "x-stoplight": {
         "id": "ujjnoquvv35ai"
-      }
+      },
+      "description": "the DID service id"
     },
     "description": {
       "type": "string",

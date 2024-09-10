@@ -1,12 +1,12 @@
 {
-  "title": "issuing-configuration",
+  "title": "issuer-service",
   "x-stoplight": {
     "id": "whpw5o5vcaybt"
   },
   "description": "The issuing configuration",
   "allOf": [
     {
-      "$ref": "./modify-issuing-configuration.json",
+      "$ref": "./modify-issuer-service.json",
       "x-stoplight": {
         "id": "r7urcp3zyfr55"
       }
@@ -39,7 +39,6 @@
     "velocityNetworkServiceId",
     "authMethods",
     "authMode",
-    "offerMode",
     "termsUrl",
     "createdAt",
     "updatedAt"
@@ -53,7 +52,6 @@
         "verifiable_presentation"
       ],
       "authMode": "rules",
-      "offerMode": "preloaded",
       "termsUrl": "https://example.com/terms.html",
       "disclosureRequest": {
         "types": "[ { \"type\": \"PastEmploymentPosition\"}, { \"type\":  \"CurrentEmploymentPosition\"}, { \"type\": \"EducationDegree\"} ]",
