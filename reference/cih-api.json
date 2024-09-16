@@ -1687,9 +1687,9 @@
         }
       }
     },
-    "/invitations/refresh": {
+    "/depots/refresh-issue-links": {
       "post": {
-        "summary": "Refresh invitations",
+        "summary": "Refresh depot issue links",
         "tags": [
           "Invitation"
         ],
@@ -1702,7 +1702,7 @@
                   "type": "object",
                   "required": [
                     "redirectUrl",
-                    "deepLink",
+                    "vnProtocolLink",
                     "requestId"
                   ],
                   "properties": {
@@ -1713,12 +1713,12 @@
                       },
                       "description": "the redirect url used for directing to the landing pages"
                     },
-                    "deepLink": {
+                    "vnProtocolLink": {
                       "type": "string",
                       "x-stoplight": {
                         "id": "fti6uynqc1j8a"
                       },
-                      "description": "the deep link version used for building qr codes"
+                      "description": "the raw link used for building qr codes or other URIs"
                     },
                     "preauthCode": {
                       "type": "string",
@@ -1749,7 +1749,7 @@
             }
           }
         },
-        "operationId": "invitation-refresh",
+        "operationId": "depot-issue-links-refresh",
         "x-stoplight": {
           "id": "l6aezsjgj1mfp"
         },
