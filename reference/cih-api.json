@@ -1690,9 +1690,6 @@
     "/depots/refresh-issue-links": {
       "post": {
         "summary": "Refresh depot issue links",
-        "tags": [
-          "Invitation"
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -1794,7 +1791,10 @@
               }
             }
           }
-        }
+        },
+        "tags": [
+          "Depots"
+        ]
       },
       "parameters": []
     },
