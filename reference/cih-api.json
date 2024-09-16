@@ -1687,9 +1687,9 @@
         }
       }
     },
-    "/depots/refresh-issue-links": {
+    "/issue-links/refresh": {
       "post": {
-        "summary": "Refresh depot issue links",
+        "summary": "Refresh issue links",
         "responses": {
           "200": {
             "description": "OK",
@@ -1746,7 +1746,7 @@
             }
           }
         },
-        "operationId": "depot-issue-links-refresh",
+        "operationId": "issue-links-refresh",
         "x-stoplight": {
           "id": "l6aezsjgj1mfp"
         },
