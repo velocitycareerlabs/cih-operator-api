@@ -1798,10 +1798,10 @@
       },
       "parameters": []
     },
-    "/credentials/create-offer": {
+    "/credentials/create": {
       "parameters": [],
       "post": {
-        "summary": "Create credential offer",
+        "summary": "Create credential",
         "tags": [
           "Credentials"
         ],
@@ -1916,7 +1916,7 @@
                     "description": "The existing depot to use. `if no `depot` is passed in, then `depotId` must be passed"
                   },
                   "credential": {
-                    "$ref": "./g3/models/new-credential-offer.json",
+                    "$ref": "./g3/models/new-credential.json",
                     "x-stoplight": {
                       "id": "a7pvzem5m39aj"
                     }
@@ -1977,9 +1977,9 @@
         }
       }
     },
-    "/credentials/create-many-offers": {
+    "/credentials/create-many": {
       "post": {
-        "summary": "Create many offers",
+        "summary": "Create many credentials",
         "tags": [
           "Credentials"
         ],
@@ -2118,7 +2118,7 @@
                           }
                         },
                         "credential": {
-                          "$ref": "./g3/models/new-credential-offer.json",
+                          "$ref": "./g3/models/new-credential.json",
                           "x-stoplight": {
                             "id": "bypr5z3peijjn"
                           }
@@ -2185,11 +2185,12 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
     "/credentials/get": {
       "get": {
-        "summary": "Get credentials (inc. offers)",
+        "summary": "Get credentials",
         "tags": [
           "Credentials"
         ],
@@ -2405,9 +2406,9 @@
         ]
       }
     },
-    "/credentials/update-offer": {
+    "/credentials/update": {
       "post": {
-        "summary": "Update credential offer",
+        "summary": "Update credential",
         "tags": [
           "Credentials"
         ],
@@ -2525,7 +2526,7 @@
                     }
                   },
                   "credential": {
-                    "$ref": "./g3/models/new-credential-offer.json",
+                    "$ref": "./g3/models/new-credential.json",
                     "x-stoplight": {
                       "id": "a7pvzem5m39aj"
                     }
@@ -2588,11 +2589,12 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
-    "/credentials/delete-offers": {
+    "/credentials/delete": {
       "post": {
-        "summary": "Delete credential offers",
+        "summary": "Delete credential",
         "tags": [
           "Credentials"
         ],
@@ -2667,7 +2669,8 @@
             }
           }
         }
-      }
+      },
+      "parameters": []
     },
     "/credentials/revoke": {
       "post": {
