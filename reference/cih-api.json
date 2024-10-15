@@ -597,8 +597,7 @@
                         "authMethods": [
                           "verifiable_presentation"
                         ],
-                        "authMode": "rules",
-                        "offerMode": "preloaded",
+                        "authMode": "internal",
                         "termsUrl": "https://example.com/terms.html",
                         "disclosureRequest": {
                           "types": [
@@ -609,7 +608,7 @@
                           "purpose": "Issuing employment credential",
                           "retentionPeriod": "P30D"
                         },
-                        "authRules": [
+                        "verifiablePresentationAuthRules": [
                           {
                             "path": [
                               "$.email"
@@ -618,7 +617,6 @@
                             "valueIndex": 0
                           }
                         ],
-                        "genericRedirectUrl": "http://example.com/landing_page.html",
                         "authTokensExpireIn": 840000,
                         "challengesExpireIn": 600,
                         "createdAt": "2019-08-24T14:15:22Z",
@@ -635,8 +633,7 @@
                         "authMethods": [
                           "preauth"
                         ],
-                        "authMode": "rules",
-                        "offerMode": "preloaded",
+                        "authMode": "internal",
                         "authTokensExpireIn": 840000,
                         "challengesExpireIn": 600,
                         "termsUrl": "https://example.com/terms.html",
@@ -655,7 +652,6 @@
                           "verifiable_presentation"
                         ],
                         "authMode": "webhook",
-                        "offerMode": "webhook",
                         "authTokensExpireIn": 840000,
                         "challengesExpireIn": 600,
                         "termsUrl": "https://example.com/terms.html",
@@ -709,7 +705,7 @@
                 }
               },
               "examples": {
-                "Batch issuing service": {
+                "Batch issuing service using Internal VP Auth": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
                     "service": {
@@ -717,8 +713,7 @@
                       "authMethods": [
                         "verifiable_presentation"
                       ],
-                      "authMode": "rules",
-                      "offerMode": "preloaded",
+                      "authMode": "internal",
                       "authTokensExpireIn": 840000,
                       "challengesExpireIn": 600,
                       "termsUrl": "https://example.com/terms.html",
@@ -731,7 +726,7 @@
                         "purpose": "Issuing employment credential",
                         "retentionPeriod": "P30D"
                       },
-                      "authRules": [
+                      "verifiablePresentationAuthRules": [
                         {
                           "path": [
                             "$.email"
@@ -743,7 +738,7 @@
                     }
                   }
                 },
-                "Preauth codes service": {
+                "Issuer service using inbuilt preauth codes": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
                     "service": {
@@ -753,13 +748,12 @@
                       ],
                       "authTokensExpireIn": 840000,
                       "challengesExpireIn": 600,
-                      "authMode": "webhook",
-                      "offerMode": "webhook",
+                      "authMode": "internal",
                       "termsUrl": "https://example.com/terms.html"
                     }
                   }
                 },
-                "Webhook service": {
+                "Issuer service using a webhook for preauth codes matching (not currently supported)": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
                     "service": {
@@ -770,7 +764,6 @@
                       "authTokensExpireIn": 840000,
                       "challengesExpireIn": 600,
                       "authMode": "webhook",
-                      "offerMode": "webhook",
                       "termsUrl": "https://example.com/terms.html"
                     }
                   }
@@ -830,8 +823,7 @@
                           "authMethods": [
                             "verifiable_presentation"
                           ],
-                          "authMode": "rules",
-                          "offerMode": "preloaded",
+                          "authMode": "internal",
                           "authTokensExpireIn": 840000,
                           "challengesExpireIn": 600,
                           "termsUrl": "https://example.com/terms.html",
@@ -844,7 +836,7 @@
                             "purpose": "Issuing employment credential",
                             "retentionPeriod": "P30D"
                           },
-                          "authRules": [
+                          "verifiablePresentationAuthRules": [
                             {
                               "path": [
                                 "$.email"
@@ -939,8 +931,7 @@
                         "authMethods": [
                           "verifiable_presentation"
                         ],
-                        "authMode": "rules",
-                        "offerMode": "preloaded",
+                        "authMode": "internal",
                         "authTokensExpireIn": 840000,
                         "challengesExpireIn": 600,
                         "termsUrl": "https://example.com/terms.html",
@@ -953,7 +944,7 @@
                           "purpose": "Issuing employment credential",
                           "retentionPeriod": "P30D"
                         },
-                        "authRules": [
+                        "verifiablePresentationAuthRules": [
                           {
                             "path": [
                               "$.phone"
@@ -962,7 +953,6 @@
                             "valueIndex": 1
                           }
                         ],
-                        "genericRedirectUrl": "http://example.com/landing_page.html",
                         "createdAt": "2019-08-24T14:15:22Z",
                         "updatedAt": "2022-05-09T12:09:09Z"
                       },
@@ -1019,8 +1009,7 @@
                       "authMethods": [
                         "verifiable_presentation"
                       ],
-                      "authMode": "rules",
-                      "offerMode": "preloaded",
+                      "authMode": "internal",
                       "termsUrl": "https://example.com/terms.html",
                       "disclosureRequest": {
                         "types": [
@@ -1031,7 +1020,7 @@
                         "purpose": "Issuing employment credential",
                         "retentionPeriod": "P30D"
                       },
-                      "authRules": [
+                      "verifiablePresentationAuthRules": [
                         {
                           "path": [
                             "$.phone"
@@ -1736,7 +1725,7 @@
                   "Sample": {
                     "value": {
                       "redirectUrl": "https://acme.example.com?deeplink=velocity-network%3A%2F%2Fissue%3Frequest_uri%3Dhttp%253A%252F%252Flocalhost.test%252Fapi%252Fholder%252Fv0.6%252Forg%252Fdid%253Avelocity%253Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%252Finspect%252Fget-presentation-request%253Fid%253D64db2e649bbc8befd95944d9%26vendorOriginContext%3Dbfm53Ei6muJee0jHexXah8",
-                      "deepLink": "velocity-network://issue?request_uri=http%3A%2F%2Flocalhost.test%2Fapi%2Fholder%2Fv0.6%2Forg%2Fdid%3Avelocity%3Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%2Finspect%2Fget-presentation-request%3Fid%3D64db2e649bbc8befd95944d9&vendorOriginContext=bfm53Ei6muJee0jHexXah8",
+                      "vnProtocolLink": "velocity-network://issue?request_uri=http%3A%2F%2Flocalhost.test%2Fapi%2Fholder%2Fv0.6%2Forg%2Fdid%3Avelocity%3Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%2Finspect%2Fget-presentation-request%3Fid%3D64db2e649bbc8befd95944d9&vendorOriginContext=bfm53Ei6muJee0jHexXah8",
                       "preauthCode": "bfm53Ei6muJee0jHexXah8",
                       "requestId": "JKlUzWi51cFtEVcZYq6eT"
                     }

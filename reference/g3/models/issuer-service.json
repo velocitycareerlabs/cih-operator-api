@@ -58,7 +58,7 @@
         "purpose": "Issuing employment credential",
         "duration": "P30D"
       },
-      "authRules": {
+      "verifiablePresentationAuthRules": {
         "rules": [
           {
             "path": [

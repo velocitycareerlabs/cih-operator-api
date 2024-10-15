@@ -10,7 +10,7 @@
       "authMethods": [
         "verifiable_presentation"
       ],
-      "authMode": "rulesEngine",
+      "authMode": "internal",
       "termsUrl": "https://example.com/terms.html",
       "disclosureRequest": {
         "types": [
@@ -27,7 +27,7 @@
         "purpose": "Issuing employment credential",
         "retentionPeriod": "P30D"
       },
-      "authRules": {
+      "verifiablePresentationAuthRules": {
         "rules": [
           {
             "path": [
@@ -44,7 +44,7 @@
       "authMethods": [
         "preauth"
       ],
-      "authMode": "webhook",
+      "authMode": "internal",
       "termsUrl": "https://example.com/terms.html",
       "description": "string"
     },
@@ -73,15 +73,14 @@
     }
   ],
   "required": [
-    "didServiceId",
+    "velocityNetworkServiceId",
     "termsUrl",
     "authTokensExpireIn",
     "authMethods",
-    "authMode",
-    "challengesExpireIn"
+    "authMode"
   ],
   "properties": {
-    "didServiceId": {
+    "velocityNetworkServiceId": {
       "type": "string",
       "x-stoplight": {
         "id": "z690os6ocke6q"
@@ -208,7 +207,7 @@
         "verifiable_presentation"
       ],
       "minItems": 1,
-      "description": "the auth method indicates what authentication method(s) are supported for issuing. To use `preauth` requires the issuer to include a `vendorOriginContext` in the deep link. `verifiable_presentation` requires a `disclosure` to be specified. in the future an issuer will be able to use both methods in one disclosure\n\n`authMethods` is required with at least one entry ",
+      "description": "the auth method indicates what authentication method(s) are supported for issuing. To use `preauth` requires the issuer to include a `vendorOriginContext` in the deep link. `verifiable_presentation` requires a `disclosureRequest` or `presentationDefinition` to be specified. \n\nIn the future an issuer will be able to use both methods in one disclosure\n\n`authMethods` is required with at least one entry ",
       "x-stoplight": {
         "id": "eqlilt1hlwkxb"
       },
@@ -228,11 +227,12 @@
         "id": "1m2tkstx1if3z"
       },
       "enum": [
-        "rulesEngine"
+        "internal",
+        "webhook"
       ],
       "description": "the auth mode. Currently only `rulesEngine` is supported"
     },
-    "authRules": {
+    "verifiablePresentationAuthRules": {
       "description": "authRules are the matcher rules that can be used to match an exchange with submitted identification method. Required if authMode is `rulesEngine`",
       "type": "array",
       "x-stoplight": {
