@@ -230,7 +230,7 @@
         "internal",
         "webhook"
       ],
-      "description": "the auth mode. Currently only `rulesEngine` is supported"
+      "description": "the auth mode. Currently only `internal` is supported"
     },
     "verifiablePresentationAuthRules": {
       "description": "authRules are the matcher rules that can be used to match an exchange with submitted identification method. Required if authMode is `rulesEngine`",
