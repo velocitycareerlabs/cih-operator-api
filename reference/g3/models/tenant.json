@@ -15,52 +15,6 @@
       "x-stoplight": {
         "id": "9utm7cfo2shhj"
       }
-    },
-    {
-      "type": "object",
-      "x-stoplight": {
-        "id": "3o1wvnthg8ifv"
-      },
-      "properties": {
-        "keysByPurpose": {
-          "type": "object",
-          "description": "metadatas of the keys",
-          "x-stoplight": {
-            "id": "xjvxu38brrayv"
-          },
-          "required": [
-            "DLT_TRANSACTIONS",
-            "EXCHANGES",
-            "HOLDER_ACCESS_TOKENS"
-          ],
-          "properties": {
-            "DLT_TRANSACTIONS": {
-              "$ref": "./key-metadata.json",
-              "x-stoplight": {
-                "id": "nfhe8b2xpotoe"
-              }
-            },
-            "EXCHANGES": {
-              "$ref": "./key-metadata.json",
-              "x-stoplight": {
-                "id": "o0u1pt2l0ip7z"
-              }
-            },
-            "ISSUING_METADATA": {
-              "$ref": "./key-metadata.json",
-              "x-stoplight": {
-                "id": "3ghdcw8c69fnf"
-              }
-            },
-            "HOLDER_ACCESS_TOKENS": {
-              "$ref": "./key-metadata.json",
-              "x-stoplight": {
-                "id": "l2e5f5y8aj7ed"
-              }
-            }
-          }
-        }
-      }
     }
   ],
   "examples": [
