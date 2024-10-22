@@ -23,6 +23,20 @@
           },
           "format": "uri",
           "description": "the URI that this service is hosted at"
+        },
+        "primaryAccount": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "04j4rp4li9d17"
+          },
+          "description": "optional primary account value that overrides the default that will be looked up on the DLT"
+        },
+        "caoDid": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "ickuiymwc5qqb"
+          },
+          "description": "the CAO DID to use for this issuer"
         }
       }
     }

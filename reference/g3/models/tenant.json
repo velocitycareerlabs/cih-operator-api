@@ -22,50 +22,41 @@
         "id": "3o1wvnthg8ifv"
       },
       "properties": {
-        "logo": {
-          "type": "string",
-          "format": "uri",
-          "x-stoplight": {
-            "id": "9k1zwe9w69vlm"
-          }
-        },
-        "name": {
-          "type": "string",
-          "description": "did for the org",
-          "x-stoplight": {
-            "id": "eoxep3f7xk2mq"
-          }
-        },
-        "description": {
-          "type": "string",
-          "description": "did for the org",
-          "x-stoplight": {
-            "id": "t71udfpewknfe"
-          }
-        },
-        "credentialTypesIssued": {
-          "type": "array",
-          "description": "credential types that are issued",
-          "x-stoplight": {
-            "id": "clnguawpkhrrd"
-          },
-          "items": {
-            "type": "string",
-            "x-stoplight": {
-              "id": "eu01jo8jqmhw1"
-            }
-          }
-        },
-        "keyMetadatas": {
-          "type": "array",
+        "keysByPurpose": {
+          "type": "object",
           "description": "metadatas of the keys",
           "x-stoplight": {
             "id": "xjvxu38brrayv"
           },
-          "items": {
-            "$ref": "./key-metadata.json",
-            "x-stoplight": {
-              "id": "6tzcd4odxy8qv"
+          "required": [
+            "DLT_TRANSACTIONS",
+            "EXCHANGES",
+            "HOLDER_ACCESS_TOKENS"
+          ],
+          "properties": {
+            "DLT_TRANSACTIONS": {
+              "$ref": "./key-metadata.json",
+              "x-stoplight": {
+                "id": "nfhe8b2xpotoe"
+              }
+            },
+            "EXCHANGES": {
+              "$ref": "./key-metadata.json",
+              "x-stoplight": {
+                "id": "o0u1pt2l0ip7z"
+              }
+            },
+            "ISSUING_METADATA": {
+              "$ref": "./key-metadata.json",
+              "x-stoplight": {
+                "id": "3ghdcw8c69fnf"
+              }
+            },
+            "HOLDER_ACCESS_TOKENS": {
+              "$ref": "./key-metadata.json",
+              "x-stoplight": {
+                "id": "l2e5f5y8aj7ed"
+              }
             }
           }
         }

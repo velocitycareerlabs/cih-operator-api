@@ -146,6 +146,12 @@
                         "id": "mz4b9yjfyu1r7"
                       }
                     },
+                    "keyMetadatas": {
+                      "$ref": "./agent-gateway/models/key-metadata.v1.json",
+                      "x-stoplight": {
+                        "id": "5h4ler9v3gz3y"
+                      }
+                    },
                     "requestId": {
                       "type": "string",
                       "x-stoplight": {
@@ -340,6 +346,74 @@
                     "type": "string",
                     "x-stoplight": {
                       "id": "1tuxtqunpzr42"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tenants/update": {
+      "post": {
+        "summary": "Update tenant",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "tenant",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "tenant": {
+                      "$ref": "./g3/models/tenant.json",
+                      "x-stoplight": {
+                        "id": "ogifjdljtyxxb"
+                      },
+                      "description": "the tenant"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "cgtscde290id3"
+                      },
+                      "description": "the request id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "tenants-update",
+        "x-stoplight": {
+          "id": "lvehr562ywplo"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "wd7din5mi0q3t"
+                    }
+                  },
+                  "tenant": {
+                    "$ref": "./g3/models/new-tenant.json",
+                    "x-stoplight": {
+                      "id": "oq0mciu8ay40e"
                     }
                   }
                 }
