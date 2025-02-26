@@ -28,7 +28,7 @@
   "examples": [
     {
       "id": "5fsdflkdsfsdfsfwwerr",
-      "did": "did:ion:129031903190239123021312",
+      "did": "did:web:example.com",
       "name": "ACME Limited",
       "logo": "http://example.com/logo.com",
       "createdAt": "2019-08-24T14:15:22Z",
