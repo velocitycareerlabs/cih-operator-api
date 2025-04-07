@@ -104,8 +104,8 @@
         }
       },
       "issuer": {
-        "id": "did:ion:1234",
-        "name": "ACME Corportation",
+        "id": "did:web:acmecorp.com",
+        "name": "ACME Corporation",
         "image": "https://example.com/image.png"
       },
       "validFrom": "2019-08-24T14:15:22Z",
@@ -153,7 +153,7 @@
           }
         }
       },
-      "issuer": "did:ion:1234",
+      "issuer": "did:web:acmecorp.com",
       "validFrom": "2019-08-24T14:15:22Z",
       "validUntil": "2019-08-24T14:15:22Z",
       "offerId": "skwqoc82kj(-ska",

@@ -85,7 +85,7 @@
                         "type": "bearer",
                         "bearerToken": "HysE53p)1$"
                       },
-                      "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A"
+                      "did": "did:web:example.com"
                     },
                     "keys": [
                       {
@@ -105,7 +105,7 @@
                 "Tenant configured for batch issuing": {
                   "value": {
                     "tenant": {
-                      "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A"
+                      "did": "did:web:example.com"
                     },
                     "keys": [
                       {
@@ -165,7 +165,7 @@
                     "value": {
                       "tenant": {
                         "id": "669f15e3591256df06edee96",
-                        "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A",
+                        "did": "did:web:example.com",
                         "name": "Alpha University",
                         "description": "Alpha University is an esteemed institution....",
                         "logo": "http://example.com/alpha-uni-logo-400x400.png",
@@ -244,7 +244,7 @@
                       "tenants": [
                         {
                           "id": "669f15e3591256df06edee96",
-                          "did": "did:ion:EiCjHFpU1Fm6Qnq7XIj_Gt2QGCpnwQrrnUWoVrM4H9we1A",
+                          "did": "did:web:example.com",
                           "name": "Alpha University",
                           "description": "Alpha University is an esteemed institution....",
                           "logo": "http://example.com/alpha-uni-logo-400x400.png",
@@ -1894,7 +1894,7 @@
                             "CurrentEmploymentPosition"
                           ],
                           "credentialSubject": {
-                            "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                            "company": "did:web:microsoft.com",
                             "companyName": {
                               "localized": {
                                 "en": "Microsoft Corporation"
@@ -1986,7 +1986,7 @@
                           "CurrentEmploymentPosition"
                         ],
                         "credentialSubject": {
-                          "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                          "company": "did:web:microsoft.com",
                           "companyName": {
                             "localized": {
                               "en": "Microsoft Corporation"
@@ -2081,7 +2081,7 @@
                               "CurrentEmploymentPosition"
                             ],
                             "credentialSubject": {
-                              "company": "did:ion:c257274276a4e539741ca11b590b9447b26a8051",
+                              "company": "did:web:microsoft.com",
                               "companyName": {
                                 "localized": {
                                   "en": "Microsoft Corporation"
@@ -2195,7 +2195,7 @@
                               "CurrentEmploymentPosition"
                             ],
                             "credentialSubject": {
-                              "company": "did:ion:0xc257274276a4e539741ca11b590b9447b26a8051",
+                              "company": "did:web:example.com",
                               "companyName": {
                                 "localized": {
                                   "en": "Microsoft Corporation"
@@ -2534,7 +2534,7 @@
                             }
                           },
                           "issuer": {
-                            "name": "ACME Corportation",
+                            "name": "ACME Corporation",
                             "image": "https://example.com/image.png"
                           }
                         },
@@ -2629,7 +2629,7 @@
                           }
                         },
                         "issuer": {
-                          "name": "ACME Corportation",
+                          "name": "ACME Corporation",
                           "image": "https://example.com/image.png"
                         }
                       }
