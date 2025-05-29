@@ -1746,28 +1746,18 @@
                   "type": "object",
                   "required": [
                     "redirectUrl",
-                    "launchUrl",
                     "vnProtocolLink",
                     "openid4vcUri",
                     "requestId"
                   ],
                   "properties": {
                     "redirectUrl": {
-                      "deprecated": true,
                       "type": "string",
                       "x-stoplight": {
                         "id": "lsrlicx0osckf"
                       },
-                      "description": "the redirect url used for directing to the landing pages",
+                      "description": "the redirect url used for directing to the landing pages\nthe `deeplink` query parameter is used for vn_api\nthe `openid4vc_uri` is used for openid4vci & openid4vp links",
                       "format": "uri"
-                    },
-                    "launchUrl": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "3pvkm3c0mvr6h"
-                      },
-                      "format": "uri",
-                      "description": "the new launch url used for directing to the landing pages. Replaces redirectUrl"
                     },
                     "vnProtocolLink": {
                       "type": "string",
@@ -1803,8 +1793,7 @@
                 "examples": {
                   "Sample": {
                     "value": {
-                      "redirectUrl": "https://acme.example.com?deeplink=velocity-network%3A%2F%2Fissue%3Frequest_uri%3Dhttp%253A%252F%252Flocalhost.test%252Fapi%252Fholder%252Fv0.6%252Forg%252Fdid%253Avelocity%253Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%252Finspect%252Fget-presentation-request%253Fid%253D64db2e649bbc8befd95944d9%26vendorOriginContext%3Dbfm53Ei6muJee0jHexXah8&deeplink=openid-credential-offer%3A%2F%2F%3Fcredential_offer%3D%257B%2522credential_issuer%2522%3A%2522https%3A%2F%2Fcredential-issuer.example.com%2522%2C%2522credential_configuration_ids%2522%3A%255B%2522UniversityDegree_JWT%2522%2C%2522org.iso.18013.5.1.mDL%2522%255D%2C%2522grants%2522%3A%257B%2522urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Apre-authorized_code%2522%3A%257B%2522pre-authorized_code%2522%3A%2522oaKazRN8I0IbtZ0C7JuMn5%2522%2C%2522tx_code%2522%3A%257B%257D%257D%257D%257D",
-                      "launchUrl": "https://acme.example.com?vnapi_uri=velocity-network%3A%2F%2Fissue%3Frequest_uri%3Dhttp%253A%252F%252Flocalhost.test%252Fapi%252Fholder%252Fv0.6%252Forg%252Fdid%253Avelocity%253Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%252Finspect%252Fget-presentation-request%253Fid%253D64db2e649bbc8befd95944d9%26vendorOriginContext%3Dbfm53Ei6muJee0jHexXah8&openid4vc_uri=openid-credential-offer%3A%2F%2F%3Fcredential_offer%3D%257B%2522credential_issuer%2522%3A%2522https%3A%2F%2Fcredential-issuer.example.com%2522%2C%2522credential_configuration_ids%2522%3A%255B%2522UniversityDegree_JWT%2522%2C%2522org.iso.18013.5.1.mDL%2522%255D%2C%2522grants%2522%3A%257B%2522urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Apre-authorized_code%2522%3A%257B%2522pre-authorized_code%2522%3A%2522oaKazRN8I0IbtZ0C7JuMn5%2522%2C%2522tx_code%2522%3A%257B%257D%257D%257D%257D",
+                      "redirectUrl": "https://acme.example.com?deeplink=velocity-network%3A%2F%2Fissue%3Frequest_uri%3Dhttp%253A%252F%252Flocalhost.test%252Fapi%252Fholder%252Fv0.6%252Forg%252Fdid%253Avelocity%253Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%252Finspect%252Fget-presentation-request%253Fid%253D64db2e649bbc8befd95944d9%26vendorOriginContext%3Dbfm53Ei6muJee0jHexXah8&openid4vc_uri=openid-credential-offer%3A%2F%2F%3Fcredential_offer%3D%257B%2522credential_issuer%2522%3A%2522https%3A%2F%2Fcredential-issuer.example.com%2522%2C%2522credential_configuration_ids%2522%3A%255B%2522UniversityDegree_JWT%2522%2C%2522org.iso.18013.5.1.mDL%2522%255D%2C%2522grants%2522%3A%257B%2522urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Apre-authorized_code%2522%3A%257B%2522pre-authorized_code%2522%3A%2522oaKazRN8I0IbtZ0C7JuMn5%2522%2C%2522tx_code%2522%3A%257B%257D%257D%257D%257D",
                       "vnProtocolLink": "velocity-network://issue?request_uri=http%3A%2F%2Flocalhost.test%2Fapi%2Fholder%2Fv0.6%2Forg%2Fdid%3Avelocity%3Airmueecuta7slgovhwxjk1isfhpu94bzoh4uwrn4%2Finspect%2Fget-presentation-request%3Fid%3D64db2e649bbc8befd95944d9&vendorOriginContext=bfm53Ei6muJee0jHexXah8",
                       "openid4vcUri": "openid-credential-offer://?credential_offer=%7B%22credential_issuer%22:%22https://credential-issuer.example.com%22,%22credential_configuration_ids%22:%5B%22UniversityDegree_JWT%22,%22org.iso.18013.5.1.mDL%22%5D,%22grants%22:%7B%22urn:ietf:params:oauth:grant-type:pre-authorized_code%22:%7B%22pre-authorized_code%22:%22oaKazRN8I0IbtZ0C7JuMn5%22,%22tx_code%22:%7B%7D%7D%7D%7D",
                       "preauthCode": "bfm53Ei6muJee0jHexXah8",
