@@ -77,13 +77,12 @@
                 }
               },
               "examples": {
-                "Tenant configured for webhooks": {
+                "Tenant with a commercial name": {
                   "value": {
                     "tenant": {
-                      "webhookUrl": "http://webhook.example.com",
-                      "webHookAuth": {
-                        "type": "bearer",
-                        "bearerToken": "HysE53p)1$"
+                      "commercialEntity": {
+                        "name": "Example Brand Name",
+                        "logo": "https://example.com/logo.png"
                       },
                       "did": "did:web:example.com"
                     },
@@ -105,6 +104,31 @@
                 "Tenant configured for batch issuing": {
                   "value": {
                     "tenant": {
+                      "did": "did:web:example.com"
+                    },
+                    "keys": [
+                      {
+                        "purposes": [
+                          "DLT_TRANSACTIONS",
+                          "EXCHANGES",
+                          "ISSUING_METADATA"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#key0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      }
+                    ]
+                  }
+                },
+                "Tenant configured for webhooks": {
+                  "value": {
+                    "tenant": {
+                      "webhookUrl": "http://webhook.example.com",
+                      "webHookAuth": {
+                        "type": "bearer",
+                        "bearerToken": "HysE53p)1$"
+                      },
                       "did": "did:web:example.com"
                     },
                     "keys": [
@@ -247,6 +271,10 @@
                           "did": "did:web:example.com",
                           "name": "Alpha University",
                           "description": "Alpha University is an esteemed institution....",
+                          "commercialEntity": {
+                            "name": "Example Brand Name",
+                            "logo": "https://example.com/logo.png"
+                          },
                           "logo": "http://example.com/alpha-uni-logo-400x400.png",
                           "keyMetadatas": [
                             {

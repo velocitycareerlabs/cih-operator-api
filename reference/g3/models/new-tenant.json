@@ -37,6 +37,22 @@
             "id": "ickuiymwc5qqb"
           },
           "description": "the CAO DID to use for this issuer"
+        },        
+        "commercialEntity": {
+          "type": "object",
+          "required": [
+            "name",
+            "logo"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "logo": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
         }
       }
     }
