@@ -28,7 +28,8 @@
           "type": "string",
           "x-stoplight": {
             "id": "ogofxrhdzd4zw"
-          }
+          },
+          "format": "uri"
         },
         "hostUrl": {
           "type": "string",
