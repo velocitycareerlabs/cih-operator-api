@@ -22,14 +22,16 @@
           "type": "string",
           "x-stoplight": {
             "id": "upvlwt5baib0w"
-          }
+          },
+          "description": "the name to use for this tenant"
         },
         "logo": {
           "type": "string",
           "x-stoplight": {
             "id": "ogofxrhdzd4zw"
           },
-          "format": "uri"
+          "format": "uri",
+          "description": "the logo to use for this tenant"
         },
         "hostUrl": {
           "type": "string",
