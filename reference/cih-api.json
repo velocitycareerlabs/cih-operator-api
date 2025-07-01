@@ -80,10 +80,8 @@
                 "Tenant with a commercial name": {
                   "value": {
                     "tenant": {
-                      "commercialEntity": {
-                        "name": "Example Brand Name",
-                        "logo": "https://example.com/logo.png"
-                      },
+                      "name": "Example Brand Name",
+                      "logo": "https://example.com/logo.png",
                       "did": "did:web:example.com"
                     },
                     "keys": [
@@ -104,44 +102,37 @@
                 "Tenant configured for batch issuing": {
                   "value": {
                     "tenant": {
-                      "did": "did:web:example.com"
+                      "did": "did:web:example.com",
+                      "name": "ACME Corporation",
+                      "logo": "https://acme.corp.com/logo.png"
                     },
                     "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
-                          "ISSUING_METADATA"
+                          "DLT_TRANSACTIONS"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
-                      }
-                    ]
-                  }
-                },
-                "Tenant configured for webhooks": {
-                  "value": {
-                    "tenant": {
-                      "webhookUrl": "http://webhook.example.com",
-                      "webHookAuth": {
-                        "type": "bearer",
-                        "bearerToken": "HysE53p)1$"
+                        "kidFragment": "#key-0",
+                        "key": "4a05a0368c22d4c0b3046..."
                       },
-                      "did": "did:web:example.com"
-                    },
-                    "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
+                          "EXCHANGES"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#key-1",
+                        "key": "831b4ab4b41eae1730e73..."
+                      },
+                      {
+                        "purposes": [
                           "ISSUING_METADATA"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
+                        "kidFragment": "#key-2",
+                        "key": "b12cca2014f1e26a6252dc..."
                       }
                     ]
                   }
