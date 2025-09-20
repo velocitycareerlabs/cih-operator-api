@@ -1177,7 +1177,7 @@
                 "Example 1": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "serviceId": "669f15e3591256df06edef80"                
+                    "serviceId": "669f15e3591256df06edef80"
                   }
                 }
               }
@@ -1725,7 +1725,7 @@
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
                     "serviceId": "669f15e3591256df06edef80",
-                    "depotId": "669f15e3591256df06edeb15"                  
+                    "depotId": "669f15e3591256df06edeb15"
                   }
                 }
               }
@@ -2704,7 +2704,7 @@
                 "Sample": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "credentialId": "669f15e3591256df06edf001"                  
+                    "credentialId": "669f15e3591256df06edf001"
                   }
                 }
               }
@@ -2800,14 +2800,68 @@
     "/relying-party-services/create": {
       "post": {
         "summary": "Create relying party service",
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json",
+                      "x-stoplight": {
+                        "id": "4moycjvzovh0i"
+                      },
+                      "description": "the created relying party service"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "tgocs9tnl1tw9"
+                      },
+                      "description": "Api service's request id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "post-rp-services-create",
         "x-stoplight": {
           "id": "g4f86frnt5yiw"
         },
         "tags": [
           "Relying Party Services"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xsi7hh4h73wzv"
+                    }
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json",
+                    "x-stoplight": {
+                      "id": "oc6l1sqfxo7j8"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "parameters": []
     },
@@ -2817,12 +2871,66 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "services",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "8uoqq4y7v0ajn"
+                      },
+                      "description": "the matching relying party services",
+                      "items": {
+                        "$ref": "./g3/models/relyingparty-service.json",
+                        "x-stoplight": {
+                          "id": "r75dymgobaee1"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "95xjz24ebk0lt"
+                      },
+                      "description": "the API Service request id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-get",
         "x-stoplight": {
           "id": "tv1c1mo4p7gdt"
         },
-        "description": ""
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "serviceId"
+          }
+        ]
       }
     },
     "/relying-party-services/update": {
@@ -2831,10 +2939,78 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json",
+                      "x-stoplight": {
+                        "id": "pauf81knovywc"
+                      },
+                      "description": "the relying party service\n"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9pjzxe5mjjbo6"
+                      },
+                      "description": "the API service request Id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-update",
         "x-stoplight": {
           "id": "i25rplqfe76wi"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "hbq4pvw9mu5d0"
+                    },
+                    "description": "the tenant to modify"
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "a6i66q6mynovj"
+                    },
+                    "description": "the service to modify\n"
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json",
+                    "x-stoplight": {
+                      "id": "gy0h1z09ke62g"
+                    },
+                    "description": "the values to modify"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2844,10 +3020,62 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "inz5z82izj177"
+                      },
+                      "description": "the API service request Id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-delete",
         "x-stoplight": {
           "id": "m4hgn3zj49p78"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "kda995gan3hmg"
+                    },
+                    "description": "the tenant id"
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uzjgyxa4cziw5"
+                    },
+                    "description": "the service id to delete"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },

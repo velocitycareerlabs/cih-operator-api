@@ -5,7 +5,10 @@
   },
   "allOf": [
     {
-      "$ref": "../../common/models/immutable-record.v1.json"
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "39swrlgq66ub0"
+      }
     },
     {
       "type": "object",
@@ -14,20 +17,45 @@
       },
       "required": [
         "depotId",
-        "vpJwt",
-        "content"
+        "exchangeId",
+        "format",
+        "presentation"
       ],
       "properties": {
         "depotId": {
           "type": "string",
           "x-stoplight": {
             "id": "0ng4lsmja4xle"
-          }
+          },
+          "description": "The depot associated with this user"
         },
-        "vpJwt": {
+        "exchangeId": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "bzj55ewa6n9qq"
+          },
+          "description": "The exchangeId associated with this presentation's reception"
+        },
+        "format": {
+          "x-stoplight": {
+            "id": "dqyaglcud7zai"
+          },
+          "enum": [
+            "JWT_VP"
+          ],
+          "description": "the format of the data contained in the presentation\nIf the format is jwtVp the presentation will be stored in a variable called presentation"
+        },
+        "presentation": {
           "type": "string",
           "x-stoplight": {
             "id": "rdwwfjd7cjmde"
+          },
+          "description": "the presentation itself"
+        },
+        "checkResults": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "u9qs2e34nvgnp"
           }
         },
         "content": {
