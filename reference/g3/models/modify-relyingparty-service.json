@@ -45,8 +45,7 @@
       "x-stoplight": {
         "id": "isg4xu0io3vdv"
       },
-      "description": "whether this service is being setup for continuous feeds",
-      "default": false,
+      "description": "whether this service is being setup for single transactions or feeds",
       "enum": [
         "single",
         "feed"
