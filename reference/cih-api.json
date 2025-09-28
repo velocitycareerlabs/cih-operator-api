@@ -3186,74 +3186,90 @@
                 "schema": {
                   "type": "object",
                   "required": [
+                    "format",
+                    "presentation",
+                    "w3cPresentaiton",
                     "verified",
-                    "content",
-                    "detail",
+                    "tamperCheck",
+                    "credentials",
                     "requestId"
                   ],
                   "properties": {
-                    "verified": {
-                      "type": "boolean",
+                    "format": {
                       "x-stoplight": {
-                        "id": "s95cg7pkendqa"
+                        "id": "9h5bc6laogk4r"
+                      },
+                      "enum": [
+                        "JWT_VP"
+                      ]
+                    },
+                    "presentation": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "m18sez9e1azm8"
                       }
                     },
-                    "content": {
+                    "w3cPresentaiton": {
                       "$ref": "./g3/models/presentation-content.json",
                       "x-stoplight": {
                         "id": "u3iy9svxu3idz"
                       }
                     },
-                    "detail": {
-                      "type": "object",
+                    "verified": {
                       "x-stoplight": {
-                        "id": "8auxegv8e12f5"
+                        "id": "s95cg7pkendqa"
                       },
-                      "properties": {
-                        "overallChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "o4u34cs09nboy"
-                          }
-                        },
-                        "verifiablePresentationChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "vcltbyqxuyjah"
-                          }
-                        },
-                        "verfiableCredentials": {
-                          "type": "array",
-                          "x-stoplight": {
-                            "id": "g28oeg57pbx2i"
-                          },
-                          "items": {
-                            "x-stoplight": {
-                              "id": "c0pjn6vwaxzej"
-                            },
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string",
-                                "x-stoplight": {
-                                  "id": "e00gvfd5cnpv5"
-                                }
-                              },
-                              "checks": {
-                                "$ref": "./g3/models/checks.json",
-                                "x-stoplight": {
-                                  "id": "9guv3htrwy5wz"
-                                }
-                              }
-                            }
-                          }
-                        }
+                      "type": "boolean"
+                    },
+                    "tamperCheck": {
+                      "x-stoplight": {
+                        "id": "bzh51d5p1w2pu"
+                      },
+                      "enum": [
+                        "PASS",
+                        "FAIL"
+                      ]
+                    },
+                    "credentials": {
+                      "$ref": "./g3/models/checks.json",
+                      "x-stoplight": {
+                        "id": "2288qvvesgtnw"
                       }
                     },
                     "requestId": {
                       "type": "string",
                       "x-stoplight": {
                         "id": "carkxbv9mq6n6"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "2ikzlei3q3yrt"
+                      }
+                    },
+                    "statusCode": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "09t4qww129r1r"
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "f9tctazaq5a1y"
                       }
                     }
                   }
@@ -3270,44 +3286,66 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "tenantId"
-                ],
-                "properties": {
-                  "tenantId": {
-                    "type": "string",
-                    "x-stoplight": {
-                      "id": "2xkdc7cb6f8nw"
+                "anyOf": [
+                  {
+                    "required": [
+                      "tenantId",
+                      "format",
+                      "presentation"
+                    ],
+                    "properties": {
+                      "tenantId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "2xkdc7cb6f8nw"
+                        },
+                        "description": "the tenant id"
+                      },
+                      "format": {
+                        "x-stoplight": {
+                          "id": "wwl3hfhkhvjuf"
+                        },
+                        "enum": [
+                          "JWT_VP"
+                        ],
+                        "description": "the formats of presentations supported"
+                      },
+                      "presentation": {
+                        "x-stoplight": {
+                          "id": "wuayij3a72fyn"
+                        },
+                        "type": "string",
+                        "description": "a presentation in the specified format "
+                      }
                     }
                   },
-                  "presentationid": {
-                    "type": "string",
+                  {
                     "x-stoplight": {
-                      "id": "wwl3hfhkhvjuf"
+                      "id": "fjenz77g48aq5"
                     },
-                    "description": "one of presentationid or prsentation must be passed in"
-                  },
-                  "vpJwt": {
-                    "x-stoplight": {
-                      "id": "wuayij3a72fyn"
-                    },
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "array",
-                    "x-stoplight": {
-                      "id": "uaue6o3zqgts0"
-                    },
-                    "description": "optional set of rules to determine if credentials pass verification",
-                    "items": {
-                      "x-stoplight": {
-                        "id": "p2ehg5tki9uta"
+                    "required": [
+                      "tenantId",
+                      "presentationId"
+                    ],
+                    "properties": {
+                      "tenantId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "qrnxp1xjklw3d"
+                        },
+                        "description": "the tenant id"
                       },
-                      "type": "string"
+                      "presentationId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "xx3nrlyfdepia"
+                        },
+                        "description": "the id of the stored presentation"
+                      }
                     }
                   }
-                }
+                ],
+                "type": "object"
               }
             }
           }

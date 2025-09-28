@@ -4,41 +4,103 @@
     "id": "uz7ld9k0b5lql"
   },
   "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "verified",
+    "tamperCheck",
+    "issuerTrustCheck",
+    "holderTrustCheck",
+    "revocationCheck",
+    "validityCheck",
+    "format",
+    "credential",
+    "w3cCredential"
+  ],
   "properties": {
     "verified": {
-      "type": "boolean",
       "x-stoplight": {
         "id": "x7jr4v2a22fm4"
-      }
+      },
+      "type": "boolean"
     },
     "tamperCheck": {
-      "type": "string",
       "x-stoplight": {
         "id": "rfo9avsjxys91"
-      }
+      },
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED"
+      ]
     },
-    "issuerCheck": {
+    "issuerTrustCheck": {
       "type": "string",
       "x-stoplight": {
         "id": "4in26uj71zn0j"
-      }
+      },
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED",
+        "SELF_SIGNED",
+        "DATA_INTEGRITY_ERROR"
+      ]
+    },
+    "holderTrustCheck": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "xpnmabqbxcuqc"
+      },
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED",
+        "NOT_APPLICABLE"
+      ]
     },
     "revocationCheck": {
       "type": "string",
       "x-stoplight": {
         "id": "x6a2pqico1wzn"
-      }
-    },
-    "holderCheck": {
-      "type": "string",
-      "x-stoplight": {
-        "id": "xpnmabqbxcuqc"
-      }
+      },
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED",
+        "DEPENDENCY_RESOLUTION_ERROR",
+        "NOT_APPLICABLE"
+      ]
     },
     "validityCheck": {
       "type": "string",
       "x-stoplight": {
         "id": "m370vse9w27jo"
+      },
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "format": {
+      "x-stoplight": {
+        "id": "54pnl449yo20g"
+      },
+      "enum": [
+        "JWT_VC"
+      ]
+    },
+    "credential": {
+      "type": "string",
+      "x-stoplight": {
+        "id": "nmxjzs92s0m9x"
+      }
+    },
+    "w3cCredential": {
+      "type": "object",
+      "x-stoplight": {
+        "id": "78f4g00w8eq3g"
       }
     }
   }
