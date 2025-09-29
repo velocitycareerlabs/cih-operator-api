@@ -97,7 +97,7 @@
                     ]
                   }
                 },            
-                "Tenant with overridden hostUrl and CAO DID ": {
+                "Tenant with overridden hostUrl and CAO DID": {
                   "value": {
                     "tenant": {                      
                       "did": "did:web:example.com",
