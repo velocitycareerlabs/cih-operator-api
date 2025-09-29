@@ -85,7 +85,7 @@
       "x-stoplight": {
         "id": "z690os6ocke6q"
       },
-      "description": "DID Service Id"
+      "description": "The Service Id fragment from the DID Document. Starts with a `#`"
     },
     "description": {
       "type": "string",
