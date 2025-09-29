@@ -3205,7 +3205,7 @@
                       }
                     },
                     "presentation": {
-                      "$ref": "./g3/models/presentiation.json"
+                      "$ref": "./g3/models/presentation.json"
                     },
                     "verification": {
                       "$ref": "./g3/models/presentation-verification.json",
