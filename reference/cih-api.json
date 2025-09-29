@@ -3094,7 +3094,7 @@
                   "type": "object",
                   "properties": {
                     "presentations": {
-                      "$ref": "./g3/models/presentiation.json",
+                      "$ref": "./g3/models/presentation.json",
                       "x-stoplight": {
                         "id": "40lqo5mj6ncap"
                       }
