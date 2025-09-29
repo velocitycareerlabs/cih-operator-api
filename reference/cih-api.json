@@ -3129,16 +3129,6 @@
           },
           {
             "in": "query",
-            "name": "serviceId",
-            "schema": {
-              "type": "string",
-              "x-stoplight": {
-                "id": "j0b11wphoa48t"
-              }
-            }
-          },
-          {
-            "in": "query",
             "name": "depotId",
             "schema": {
               "type": "array",
