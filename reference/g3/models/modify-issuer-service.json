@@ -102,31 +102,6 @@
       },
       "format": "uri"
     },
-    "commercialEntity": {
-      "type": "object",
-      "x-stoplight": {
-        "id": "pt3x31o151ngf"
-      },
-      "required": [
-        "name",
-        "logo"
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "fb4irrgpimckl"
-          }
-        },
-        "logo": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "32ki4vwofaw2b"
-          },
-          "format": "uri"
-        }
-      }
-    },
     "disclosureRequest": {
       "type": "object",
       "description": "Required if `identificationMethod` contains `verifiable_presentation`",
