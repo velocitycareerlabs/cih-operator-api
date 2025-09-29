@@ -77,12 +77,12 @@
                 }
               },
               "examples": {
-                "Tenant with a commercial name": {
+                "Simple tenant": {
                   "value": {
                     "tenant": {
+                      "did": "did:web:example.com",
                       "name": "Example Brand Name",
-                      "logo": "https://example.com/logo.png",
-                      "did": "did:web:example.com"
+                      "logo": "https://example.com/logo.png"
                     },
                     "keys": [
                       {
@@ -98,13 +98,15 @@
                       }
                     ]
                   }
-                },
-                "Tenant configured for batch issuing": {
+                },            
+                "Tenant with overridden hostUrl and CAO DID": {
                   "value": {
                     "tenant": {
                       "did": "did:web:example.com",
                       "name": "ACME Corporation",
-                      "logo": "https://acme.corp.com/logo.png"
+                      "logo": "https://acme.corp.com/logo.png",
+                      "hostUrl": "https://agent.example.com",
+                      "caoDid": "did:web:saasprovider.com"
                     },
                     "keys": [
                       {
@@ -137,7 +139,7 @@
                     ]
                   }
                 }
-              }
+              } 
             }
           }
         },
