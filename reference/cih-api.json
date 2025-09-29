@@ -77,14 +77,9 @@
                 }
               },
               "examples": {
-                "Tenant configured for webhooks": {
+                "Simple tenant": {
                   "value": {
                     "tenant": {
-                      "webhookUrl": "http://webhook.example.com",
-                      "webHookAuth": {
-                        "type": "bearer",
-                        "bearerToken": "HysE53p)1$"
-                      },
                       "did": "did:web:example.com"
                     },
                     "keys": [
@@ -101,11 +96,13 @@
                       }
                     ]
                   }
-                },
-                "Tenant configured for batch issuing": {
+                },            
+                "Tenant with overridden hostUrl and CAO DID ": {
                   "value": {
-                    "tenant": {
-                      "did": "did:web:example.com"
+                    "tenant": {                      
+                      "did": "did:web:example.com",
+                      "hostUrl": "https://agent.example.com",
+                      "caoDid": "did:web:saasprovider.com"
                     },
                     "keys": [
                       {
@@ -122,7 +119,7 @@
                     ]
                   }
                 }
-              }
+              } 
             }
           }
         },
