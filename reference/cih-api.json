@@ -3168,6 +3168,13 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "exchangeId"
           }
         ]
       }
@@ -3186,60 +3193,24 @@
                 "schema": {
                   "type": "object",
                   "required": [
-                    "format",
+                    "requestId",
                     "presentation",
-                    "w3cPresentaiton",
-                    "verified",
-                    "tamperCheck",
-                    "credentials",
-                    "requestId"
+                    "verification"
                   ],
                   "properties": {
-                    "format": {
-                      "x-stoplight": {
-                        "id": "9h5bc6laogk4r"
-                      },
-                      "enum": [
-                        "JWT_VP"
-                      ]
-                    },
-                    "presentation": {
-                      "type": "string",
-                      "x-stoplight": {
-                        "id": "m18sez9e1azm8"
-                      }
-                    },
-                    "w3cPresentaiton": {
-                      "$ref": "./g3/models/presentation-content.json",
-                      "x-stoplight": {
-                        "id": "u3iy9svxu3idz"
-                      }
-                    },
-                    "verified": {
-                      "x-stoplight": {
-                        "id": "s95cg7pkendqa"
-                      },
-                      "type": "boolean"
-                    },
-                    "tamperCheck": {
-                      "x-stoplight": {
-                        "id": "bzh51d5p1w2pu"
-                      },
-                      "enum": [
-                        "PASS",
-                        "FAIL"
-                      ]
-                    },
-                    "credentials": {
-                      "$ref": "./g3/models/checks.json",
-                      "x-stoplight": {
-                        "id": "2288qvvesgtnw"
-                      }
-                    },
                     "requestId": {
                       "type": "string",
                       "x-stoplight": {
-                        "id": "carkxbv9mq6n6"
+                        "id": "zhgxlhe3aj3n4"
+                      }
+                    },
+                    "presentation": {
+                      "$ref": "./g3/models/presentiation.json"
+                    },
+                    "verification": {
+                      "$ref": "./g3/models/presentation-verification.json",
+                      "x-stoplight": {
+                        "id": "729q7pegjvxwt"
                       }
                     }
                   }
