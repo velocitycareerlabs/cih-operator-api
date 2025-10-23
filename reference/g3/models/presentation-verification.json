@@ -1,0 +1,34 @@
+{
+  "title": "presentation-verification",
+  "x-stoplight": {
+    "id": "yldgltbozswcw"
+  },
+  "type": "object",
+  "required": [
+    "verified",
+    "tamperCheck"
+  ],
+  "properties": {
+    "verified": {
+      "x-stoplight": {
+        "id": "s95cg7pkendqa"
+      },
+      "type": "boolean"
+    },
+    "tamperCheck": {
+      "x-stoplight": {
+        "id": "bzh51d5p1w2pu"
+      },
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "credentials": {
+      "$ref": "./credential-verification.json",
+      "x-stoplight": {
+        "id": "2288qvvesgtnw"
+      }
+    }
+  }
+}

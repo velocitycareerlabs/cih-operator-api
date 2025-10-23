@@ -1,0 +1,151 @@
+{
+  "title": "presentation",
+  "x-stoplight": {
+    "id": "cbzvy0fm9c6re"
+  },
+  "allOf": [
+    {
+      "$ref": "../../common/models/mutable-record.v1.json",
+      "x-stoplight": {
+        "id": "39swrlgq66ub0"
+      }
+    },
+    {
+      "$ref": "./base-presentiation.json"
+    },
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "5hco3vnz325ol"
+      },
+      "properties": {
+        "depotId": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "0ng4lsmja4xle"
+          },
+          "description": "The depot associated with this user"
+        },
+        "exchangeId": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "bzj55ewa6n9qq"
+          },
+          "description": "The exchangeId associated with this presentation's reception"
+        },
+        "verifications": {
+          "x-stoplight": {
+            "id": "ieicb2io97ksr"
+          },
+          "type": "array",
+          "items": {
+            "$ref": "./presentation-verification.json",
+            "x-stoplight": {
+              "id": "nl6xatuqkw7in"
+            }
+          }
+        }
+      },
+      "required": [
+        "depotId",
+        "exchangeId"
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "id": "string",
+      "createdAt": "2019-08-24T14:15:22Z",
+      "updatedAt": "2019-08-24T14:15:22Z",
+      "depotId": "string",
+      "exchangeId": "string",
+      "format": "JWT_VP",
+      "presentation": "string",
+      "w3cPresentation": {
+        "id": "string",
+        "verifiableCredentials": [
+          {
+            "id": "string",
+            "type": [
+              "string"
+            ],
+            "issuer": {
+              "id": "string",
+              "name": "string",
+              "image": "http://example.com"
+            },
+            "credentialSubject": {},
+            "validFrom": "2019-08-24T14:15:22Z",
+            "validUntil": "2019-08-24T14:15:22Z",
+            "issued": "2019-08-24T14:15:22Z",
+            "issuanceDate": "2019-08-24T14:15:22Z",
+            "expirationDate": "2019-08-24T14:15:22Z",
+            "replaces": [
+              {
+                "id": "http://пример.ру",
+                "type": "string",
+                "mediaType": "string",
+                "digestSRI": "string",
+                "name": "string",
+                "hint": "string"
+              }
+            ],
+            "alternative": [
+              {
+                "id": "http://пример.ру",
+                "type": "string",
+                "mediaType": "string",
+                "digestSRI": "string",
+                "name": "string",
+                "hint": "string"
+              }
+            ],
+            "relatedResource": [
+              {
+                "id": "http://пример.ру",
+                "type": "string",
+                "mediaType": "string",
+                "digestSRI": "string",
+                "name": "string",
+                "hint": "string"
+              }
+            ],
+            "credentialRefresh": [
+              {
+                "id": "string",
+                "type": "string"
+              }
+            ],
+            "credentialSchema": [
+              {
+                "id": "string",
+                "type": "string"
+              }
+            ],
+            "contentHash": {
+              "type": "string",
+              "value": "string"
+            }
+          }
+        ]
+      },
+      "verifications": [
+        {
+          "verified": true,
+          "tamperCheck": "PASS",
+          "credentials": {
+            "verified": true,
+            "tamperCheck": "PASS",
+            "issuerTrustCheck": "PASS",
+            "holderTrustCheck": "PASS",
+            "revocationCheck": "PASS",
+            "validityCheck": "PASS",
+            "format": "JWT_VC",
+            "credential": "string",
+            "w3cCredential": {}
+          }
+        }
+      ]
+    }
+  ]
+}

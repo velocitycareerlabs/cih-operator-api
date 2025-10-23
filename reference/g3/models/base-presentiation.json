@@ -1,0 +1,42 @@
+{
+  "title": "base-presentation",
+  "x-stoplight": {
+    "id": "11gsl5kjsitk8"
+  },
+  "allOf": [
+    {
+      "type": "object",
+      "x-stoplight": {
+        "id": "gvwwzfzc9pz2t"
+      },
+      "required": [
+        "format",
+        "presentation"
+      ],
+      "properties": {      
+        "format": {
+          "x-stoplight": {
+            "id": "dqyaglcud7zai"
+          },
+          "enum": [
+            "JWT_VP"
+          ],
+          "description": "the format of the data contained in the presentation\nIf the format is jwtVp the presentation will be stored in a variable called presentation"
+        },
+        "presentation": {
+          "type": "string",
+          "x-stoplight": {
+            "id": "rdwwfjd7cjmde"
+          },
+          "description": "the presentation itself"
+        },
+        "w3cPresentation": {
+          "$ref": "./w3c-presentation.json",
+          "x-stoplight": {
+            "id": "1boy7jwwnu21w"
+          }
+        }
+      }
+    }
+  ]
+}

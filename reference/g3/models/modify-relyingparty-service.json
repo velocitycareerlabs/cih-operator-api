@@ -28,45 +28,34 @@
     }
   ],
   "required": [
-    "didServiceId",
+    "velocityNetworkServiceId",
+    "mode",
     "termsUrl",
     "disclosureRequest"
   ],
   "properties": {
-    "didServiceId": {
+    "velocityNetworkServiceId": {
       "type": "string",
       "x-stoplight": {
         "id": "ujjnoquvv35ai"
       },
       "description": "the DID service id"
     },
+    "mode": {
+      "x-stoplight": {
+        "id": "isg4xu0io3vdv"
+      },
+      "description": "whether this service is being setup for single transactions or feeds",
+      "enum": [
+        "single",
+        "feed"
+      ]
+    },
     "description": {
       "type": "string",
       "description": "Description field for this inspection configuration",
       "x-stoplight": {
         "id": "10u8nkoj2rdvq"
-      }
-    },
-    "commercialEntity": {
-      "type": "object",
-      "x-stoplight": {
-        "id": "zctz7m7nx0yrl"
-      },
-      "description": "overriding branding to use when representing this inspection service",
-      "properties": {
-        "name": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "tbglxqg4jyqd6"
-          }
-        },
-        "logo": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "h215pcdzc1vt8"
-          },
-          "format": "uri"
-        }
       }
     },
     "termsUrl": {
@@ -151,21 +140,13 @@
         "id": "m76vst1p19ja5"
       }
     },
-    "feed": {
-      "type": "boolean",
-      "x-stoplight": {
-        "id": "isg4xu0io3vdv"
-      },
-      "description": "whether this service is being setup for continuous feeds",
-      "default": false
-    },
     "automaticallyVerify": {
       "type": "boolean",
-      "default": true,
       "description": "Whether the presentation and credentials will be checked as part of the inspection flow",
       "x-stoplight": {
         "id": "w3hmav5uqhxi5"
-      }
+      },
+      "default": false
     },
     "sendPushOnVerification": {
       "type": "boolean",

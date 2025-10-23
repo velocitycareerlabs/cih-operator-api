@@ -1174,7 +1174,7 @@
                 "Example 1": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "serviceId": "669f15e3591256df06edef80"                
+                    "serviceId": "669f15e3591256df06edef80"
                   }
                 }
               }
@@ -1722,7 +1722,7 @@
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
                     "serviceId": "669f15e3591256df06edef80",
-                    "depotId": "669f15e3591256df06edeb15"                  
+                    "depotId": "669f15e3591256df06edeb15"
                   }
                 }
               }
@@ -2701,7 +2701,7 @@
                 "Sample": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "credentialId": "669f15e3591256df06edf001"                  
+                    "credentialId": "669f15e3591256df06edf001"
                   }
                 }
               }
@@ -2797,14 +2797,68 @@
     "/relying-party-services/create": {
       "post": {
         "summary": "Create relying party service",
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json",
+                      "x-stoplight": {
+                        "id": "4moycjvzovh0i"
+                      },
+                      "description": "the created relying party service"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "tgocs9tnl1tw9"
+                      },
+                      "description": "Api service's request id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "post-rp-services-create",
         "x-stoplight": {
           "id": "g4f86frnt5yiw"
         },
         "tags": [
           "Relying Party Services"
-        ]
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "xsi7hh4h73wzv"
+                    }
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json",
+                    "x-stoplight": {
+                      "id": "oc6l1sqfxo7j8"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "parameters": []
     },
@@ -2814,12 +2868,66 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "services",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "x-stoplight": {
+                        "id": "8uoqq4y7v0ajn"
+                      },
+                      "description": "the matching relying party services",
+                      "items": {
+                        "$ref": "./g3/models/relyingparty-service.json",
+                        "x-stoplight": {
+                          "id": "r75dymgobaee1"
+                        }
+                      }
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "95xjz24ebk0lt"
+                      },
+                      "description": "the API Service request id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-get",
         "x-stoplight": {
           "id": "tv1c1mo4p7gdt"
         },
-        "description": ""
+        "description": "",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "serviceId"
+          }
+        ]
       }
     },
     "/relying-party-services/update": {
@@ -2828,10 +2936,78 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json",
+                      "x-stoplight": {
+                        "id": "pauf81knovywc"
+                      },
+                      "description": "the relying party service\n"
+                    },
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "9pjzxe5mjjbo6"
+                      },
+                      "description": "the API service request Id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-update",
         "x-stoplight": {
           "id": "i25rplqfe76wi"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "hbq4pvw9mu5d0"
+                    },
+                    "description": "the tenant to modify"
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "a6i66q6mynovj"
+                    },
+                    "description": "the service to modify\n"
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json",
+                    "x-stoplight": {
+                      "id": "gy0h1z09ke62g"
+                    },
+                    "description": "the values to modify"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2841,10 +3017,62 @@
         "tags": [
           "Relying Party Services"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "inz5z82izj177"
+                      },
+                      "description": "the API service request Id"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "relying-party-services-delete",
         "x-stoplight": {
           "id": "m4hgn3zj49p78"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "kda995gan3hmg"
+                    },
+                    "description": "the tenant id"
+                  },
+                  "serviceId": {
+                    "type": "string",
+                    "x-stoplight": {
+                      "id": "uzjgyxa4cziw5"
+                    },
+                    "description": "the service id to delete"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -2863,7 +3091,7 @@
                   "type": "object",
                   "properties": {
                     "presentations": {
-                      "$ref": "./g3/models/presentiation.json",
+                      "$ref": "./g3/models/presentation.json",
                       "x-stoplight": {
                         "id": "40lqo5mj6ncap"
                       }
@@ -2898,16 +3126,6 @@
           },
           {
             "in": "query",
-            "name": "serviceId",
-            "schema": {
-              "type": "string",
-              "x-stoplight": {
-                "id": "j0b11wphoa48t"
-              }
-            }
-          },
-          {
-            "in": "query",
             "name": "depotId",
             "schema": {
               "type": "array",
@@ -2937,6 +3155,13 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "exchangeId"
           }
         ]
       }
@@ -2955,74 +3180,54 @@
                 "schema": {
                   "type": "object",
                   "required": [
-                    "verified",
-                    "content",
-                    "detail",
-                    "requestId"
+                    "requestId",
+                    "presentation",
+                    "verification"
                   ],
                   "properties": {
-                    "verified": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "s95cg7pkendqa"
-                      }
-                    },
-                    "content": {
-                      "$ref": "./g3/models/presentation-content.json",
-                      "x-stoplight": {
-                        "id": "u3iy9svxu3idz"
-                      }
-                    },
-                    "detail": {
-                      "type": "object",
-                      "x-stoplight": {
-                        "id": "8auxegv8e12f5"
-                      },
-                      "properties": {
-                        "overallChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "o4u34cs09nboy"
-                          }
-                        },
-                        "verifiablePresentationChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "vcltbyqxuyjah"
-                          }
-                        },
-                        "verfiableCredentials": {
-                          "type": "array",
-                          "x-stoplight": {
-                            "id": "g28oeg57pbx2i"
-                          },
-                          "items": {
-                            "x-stoplight": {
-                              "id": "c0pjn6vwaxzej"
-                            },
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string",
-                                "x-stoplight": {
-                                  "id": "e00gvfd5cnpv5"
-                                }
-                              },
-                              "checks": {
-                                "$ref": "./g3/models/checks.json",
-                                "x-stoplight": {
-                                  "id": "9guv3htrwy5wz"
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
                     "requestId": {
                       "type": "string",
                       "x-stoplight": {
-                        "id": "carkxbv9mq6n6"
+                        "id": "zhgxlhe3aj3n4"
+                      }
+                    },
+                    "presentation": {
+                      "$ref": "./g3/models/presentation.json"
+                    },
+                    "verification": {
+                      "$ref": "./g3/models/presentation-verification.json",
+                      "x-stoplight": {
+                        "id": "729q7pegjvxwt"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "2ikzlei3q3yrt"
+                      }
+                    },
+                    "statusCode": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "09t4qww129r1r"
+                      }
+                    },
+                    "error": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "f9tctazaq5a1y"
                       }
                     }
                   }
@@ -3039,44 +3244,66 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "tenantId"
-                ],
-                "properties": {
-                  "tenantId": {
-                    "type": "string",
-                    "x-stoplight": {
-                      "id": "2xkdc7cb6f8nw"
+                "anyOf": [
+                  {
+                    "required": [
+                      "tenantId",
+                      "format",
+                      "presentation"
+                    ],
+                    "properties": {
+                      "tenantId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "2xkdc7cb6f8nw"
+                        },
+                        "description": "the tenant id"
+                      },
+                      "format": {
+                        "x-stoplight": {
+                          "id": "wwl3hfhkhvjuf"
+                        },
+                        "enum": [
+                          "JWT_VP"
+                        ],
+                        "description": "the formats of presentations supported"
+                      },
+                      "presentation": {
+                        "x-stoplight": {
+                          "id": "wuayij3a72fyn"
+                        },
+                        "type": "string",
+                        "description": "a presentation in the specified format "
+                      }
                     }
                   },
-                  "presentationid": {
-                    "type": "string",
+                  {
                     "x-stoplight": {
-                      "id": "wwl3hfhkhvjuf"
+                      "id": "fjenz77g48aq5"
                     },
-                    "description": "one of presentationid or prsentation must be passed in"
-                  },
-                  "vpJwt": {
-                    "x-stoplight": {
-                      "id": "wuayij3a72fyn"
-                    },
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "array",
-                    "x-stoplight": {
-                      "id": "uaue6o3zqgts0"
-                    },
-                    "description": "optional set of rules to determine if credentials pass verification",
-                    "items": {
-                      "x-stoplight": {
-                        "id": "p2ehg5tki9uta"
+                    "required": [
+                      "tenantId",
+                      "presentationId"
+                    ],
+                    "properties": {
+                      "tenantId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "qrnxp1xjklw3d"
+                        },
+                        "description": "the tenant id"
                       },
-                      "type": "string"
+                      "presentationId": {
+                        "type": "string",
+                        "x-stoplight": {
+                          "id": "xx3nrlyfdepia"
+                        },
+                        "description": "the id of the stored presentation"
+                      }
                     }
                   }
-                }
+                ],
+                "type": "object"
               }
             }
           }
