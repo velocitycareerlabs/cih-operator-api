@@ -1,0 +1,94 @@
+{
+  "title": "presentation-verification",
+  "type": "object",
+  "required": [
+    "verified",
+    "tamperCheck"
+  ],
+  "properties": {
+    "verified": {
+      "type": "boolean",
+      "description": "overall result — true only when every credential in the presentation passes"
+    },
+    "tamperCheck": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL",
+        "UNCHECKED"
+      ]
+    },
+    "credentials": {
+      "type": "array",
+      "description": "per-credential check results",
+      "items": {
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string",
+            "enum": [
+              "JWT_VC"
+            ]
+          },
+          "credential": {
+            "type": "string",
+            "description": "the raw credential (JWT_VC)"
+          },
+          "verified": {
+            "type": "boolean"
+          },
+          "tamperCheck": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCHECKED"
+            ]
+          },
+          "trustedIssuerCheck": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCHECKED",
+              "SELF_SIGNED",
+              "DATA_INTEGRITY_ERROR"
+            ]
+          },
+          "trustedHolderCheck": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCHECKED",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "revocationCheck": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCHECKED",
+              "DEPENDENCY_RESOLUTION_ERROR",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "expiryCheck": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCHECKED",
+              "NOT_APPLICABLE"
+            ]
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

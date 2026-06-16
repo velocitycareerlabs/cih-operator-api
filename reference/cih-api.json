@@ -9,8 +9,8 @@
   },
   "servers": [
     {
-      "url": "https://cih.velocitycareerlabs.io",
-      "description": "Credential Integration Hub"
+      "url": "https://cih.velocitycareerlabs.io/operator",
+      "description": "Credential Integration Hub operator API"
     }
   ],
   "tags": [
@@ -80,19 +80,37 @@
                 "Simple tenant": {
                   "value": {
                     "tenant": {
-                      "did": "did:web:example.com"
+                      "did": "did:web:example.com",
+                      "name": "Alpha University",
+                      "logo": "http://example.com/alpha-uni-logo-400x400.png"
                     },
                     "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
+                          "DLT_TRANSACTIONS"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#dlt-key-0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      },
+                      {
+                        "purposes": [
+                          "EXCHANGES"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#exchange-key-0",
+                        "key": "a73be1905d2f0b5c4198ef.."
+                      },
+                      {
+                        "purposes": [
                           "ISSUING_METADATA"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
+                        "kidFragment": "#issuing-metadata-key-0",
+                        "key": "c95da3017e4a2c6d3287fa.."
                       }
                     ]
                   }
@@ -101,20 +119,38 @@
                   "value": {
                     "tenant": {                      
                       "did": "did:web:example.com",
+                      "name": "Alpha University",
+                      "logo": "http://example.com/alpha-uni-logo-400x400.png",
                       "hostUrl": "https://agent.example.com",
                       "caoDid": "did:web:saasprovider.com"
                     },
                     "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
+                          "DLT_TRANSACTIONS"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#dlt-key-0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      },
+                      {
+                        "purposes": [
+                          "EXCHANGES"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#exchange-key-0",
+                        "key": "a73be1905d2f0b5c4198ef.."
+                      },
+                      {
+                        "purposes": [
                           "ISSUING_METADATA"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
+                        "kidFragment": "#issuing-metadata-key-0",
+                        "key": "c95da3017e4a2c6d3287fa.."
                       }
                     ]
                   }
@@ -1222,9 +1258,7 @@
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
                         "userReference": "olivia.hafez@example.com",
-                        "serviceIds": [
-                          "669f15e3591256df06edef80"
-                        ],
+                        "serviceId": "669f15e3591256df06edef80",
                         "createdAt": "2019-08-24T14:15:22Z",
                         "updatedAt": "2019-08-24T14:15:22Z"
                       },
@@ -1346,18 +1380,14 @@
                         {
                           "id": "669f15e3591256df06edeb15",
                           "userReference": "olivia.hafez@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         },
                         {
                           "id": "669f15e3591256df06edeb16",
                           "userReference": "adam.smith@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         }
@@ -1483,9 +1513,7 @@
                         {
                           "id": "669f15e3591256df06edeb15",
                           "userReference": "olivia.hafez@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         }
@@ -1585,9 +1613,7 @@
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
                         "userReference": "olivia.hafez@test.com",
-                        "serviceIds": [
-                          "669f15e3591256df06edef80"
-                        ],
+                        "serviceId": "669f15e3591256df06edef80",
                         "createdAt": "2019-08-24T14:15:22Z",
                         "updatedAt": "2022-08-24T14:15:22Z"
                       },
@@ -1839,6 +1865,98 @@
         "tags": [
           "Issuer Services"
         ]
+      },
+      "parameters": []
+    },
+    "/presentation-links/refresh": {
+      "post": {
+        "summary": "Refresh presentation links",
+        "operationId": "presentation-links-refresh",
+        "tags": [
+          "Relying Party Services"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "serviceId": {
+                    "type": "string"
+                  },
+                  "depotId": {
+                    "type": "string",
+                    "description": "optional. Provide to create a depot-level presentation link tied to a specific user; omit for a service-level link"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depotId": "669f15e3591256df06edeb15"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "redirectUrl",
+                    "vnProtocolLink",
+                    "openid4vpProtocolLink",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "redirectUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the redirect url to embed in emails or app buttons; directs to the landing / wallet-selection page"
+                    },
+                    "vnProtocolLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the native VN-API presentation deep link"
+                    },
+                    "openid4vpProtocolLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the OpenID4VP presentation link"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "redirectUrl": "https://acme.example.com/app-redirect?deeplink=velocity-network%3A%2F%2Finspect%3Frequest_uri%3D...&openid4vp_uri=openid4vp%3A%2F%2F...",
+                      "vnProtocolLink": "velocity-network://inspect?request_uri=https%3A%2F%2Fcih.example.com%2F...",
+                      "openid4vpProtocolLink": "openid4vp://?request_uri=https%3A%2F%2Fcih.example.com%2F...",
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "parameters": []
     },
@@ -2178,7 +2296,6 @@
                 "Example 1": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "serviceId": "669f15e3591256df06edef80",
                     "items": [
                       {
                         "depotId": "669f15e3591256df06edeb15",
@@ -2863,9 +2980,12 @@
                   "type": "object",
                   "properties": {
                     "presentations": {
-                      "$ref": "./g3/models/presentiation.json",
+                      "type": "array",
                       "x-stoplight": {
                         "id": "40lqo5mj6ncap"
+                      },
+                      "items": {
+                        "$ref": "./g3/models/presentiation.json"
                       }
                     },
                     "requestId": {
@@ -2898,7 +3018,7 @@
           },
           {
             "in": "query",
-            "name": "serviceId",
+            "name": "exchangeId",
             "schema": {
               "type": "string",
               "x-stoplight": {
@@ -2910,15 +3030,9 @@
             "in": "query",
             "name": "depotId",
             "schema": {
-              "type": "array",
+              "type": "string",
               "x-stoplight": {
                 "id": "tcpds74n96x1b"
-              },
-              "items": {
-                "x-stoplight": {
-                  "id": "xfwn2l4ivog7z"
-                },
-                "type": "string"
               }
             }
           },
@@ -2926,15 +3040,9 @@
             "in": "query",
             "name": "presentationId",
             "schema": {
-              "type": "array",
+              "type": "string",
               "x-stoplight": {
                 "id": "ozsipq3gbsz1m"
-              },
-              "items": {
-                "x-stoplight": {
-                  "id": "hti44uu9r1keo"
-                },
-                "type": "string"
               }
             }
           }
@@ -2955,68 +3063,33 @@
                 "schema": {
                   "type": "object",
                   "required": [
-                    "verified",
-                    "content",
-                    "detail",
+                    "format",
+                    "presentation",
+                    "verification",
                     "requestId"
                   ],
                   "properties": {
-                    "verified": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "s95cg7pkendqa"
-                      }
+                    "format": {
+                      "type": "string",
+                      "enum": [
+                        "JWT_VP"
+                      ]
                     },
-                    "content": {
+                    "presentation": {
+                      "type": "string",
+                      "description": "the raw presentation that was verified (a JWT_VP)"
+                    },
+                    "w3cPresentation": {
                       "$ref": "./g3/models/presentation-content.json",
                       "x-stoplight": {
                         "id": "u3iy9svxu3idz"
-                      }
+                      },
+                      "description": "the decoded W3C presentation"
                     },
-                    "detail": {
-                      "type": "object",
+                    "verification": {
+                      "$ref": "./g3/models/presentation-verification.json",
                       "x-stoplight": {
                         "id": "8auxegv8e12f5"
-                      },
-                      "properties": {
-                        "overallChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "o4u34cs09nboy"
-                          }
-                        },
-                        "verifiablePresentationChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "vcltbyqxuyjah"
-                          }
-                        },
-                        "verfiableCredentials": {
-                          "type": "array",
-                          "x-stoplight": {
-                            "id": "g28oeg57pbx2i"
-                          },
-                          "items": {
-                            "x-stoplight": {
-                              "id": "c0pjn6vwaxzej"
-                            },
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string",
-                                "x-stoplight": {
-                                  "id": "e00gvfd5cnpv5"
-                                }
-                              },
-                              "checks": {
-                                "$ref": "./g3/models/checks.json",
-                                "x-stoplight": {
-                                  "id": "9guv3htrwy5wz"
-                                }
-                              }
-                            }
-                          }
-                        }
                       }
                     },
                     "requestId": {
@@ -3024,6 +3097,30 @@
                       "x-stoplight": {
                         "id": "carkxbv9mq6n6"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Verification vouchers exhausted — the tenant has no remaining Velocity verification credits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorCode": {
+                      "type": "string"
                     }
                   }
                 }
@@ -3050,33 +3147,41 @@
                       "id": "2xkdc7cb6f8nw"
                     }
                   },
-                  "presentationid": {
+                  "presentationId": {
                     "type": "string",
                     "x-stoplight": {
                       "id": "wwl3hfhkhvjuf"
                     },
-                    "description": "one of presentationid or prsentation must be passed in"
+                    "description": "verify a stored presentation by id; the result is persisted onto the presentation. Pass this, or format + presentation."
                   },
-                  "vpJwt": {
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "JWT_VP"
+                    ],
+                    "description": "required together with `presentation` when verifying an inline presentation"
+                  },
+                  "presentation": {
+                    "type": "string",
                     "x-stoplight": {
                       "id": "wuayij3a72fyn"
                     },
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "array",
-                    "x-stoplight": {
-                      "id": "uaue6o3zqgts0"
-                    },
-                    "description": "optional set of rules to determine if credentials pass verification",
-                    "items": {
-                      "x-stoplight": {
-                        "id": "p2ehg5tki9uta"
-                      },
-                      "type": "string"
-                    }
+                    "description": "an inline JWT_VP to verify ad-hoc (not persisted). Pass together with `format`, or use `presentationId`."
                   }
-                }
+                },
+                "anyOf": [
+                  {
+                    "required": [
+                      "presentationId"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "format",
+                      "presentation"
+                    ]
+                  }
+                ]
               }
             }
           }

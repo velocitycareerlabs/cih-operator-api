@@ -14,26 +14,47 @@
       },
       "required": [
         "depotId",
-        "vpJwt",
-        "content"
+        "exchangeId",
+        "format",
+        "presentation"
       ],
       "properties": {
         "depotId": {
           "type": "string",
           "x-stoplight": {
             "id": "0ng4lsmja4xle"
-          }
+          },
+          "description": "the depot associated with this user"
         },
-        "vpJwt": {
+        "exchangeId": {
+          "type": "string",
+          "description": "the exchange this presentation was received on"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "JWT_VP"
+          ]
+        },
+        "presentation": {
           "type": "string",
           "x-stoplight": {
             "id": "rdwwfjd7cjmde"
-          }
+          },
+          "description": "the raw presentation (a JWT_VP)"
         },
-        "content": {
+        "w3cPresentation": {
           "$ref": "./presentation-content.json",
           "x-stoplight": {
             "id": "2hpop1546w6rw"
+          },
+          "description": "the decoded W3C presentation"
+        },
+        "verifications": {
+          "type": "array",
+          "description": "credential check results — empty until the presentation is verified (see Verify presentation)",
+          "items": {
+            "$ref": "./presentation-verification.json"
           }
         }
       }

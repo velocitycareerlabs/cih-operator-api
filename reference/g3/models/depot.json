@@ -6,7 +6,7 @@
   "required": [
     "id",
     "userReference",
-    "serviceIds",
+    "serviceId",
     "createdAt",
     "updatedAt"
   ],
