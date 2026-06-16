@@ -4,7 +4,6 @@
     "id": "abd5b87acb607"
   },
   "type": "object",
-  "additionalProperties": false,
   "description": "The relying-party (inspection) service configuration: the credential types requested, terms and conditions, and delivery/expiry settings",
   "examples": [
     {

@@ -1876,6 +1876,7 @@
           "Relying Party Services"
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2922,6 +2923,7 @@
           "Relying Party Services"
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3057,6 +3059,7 @@
           "Relying Party Services"
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3118,6 +3121,7 @@
           "Relying Party Services"
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
