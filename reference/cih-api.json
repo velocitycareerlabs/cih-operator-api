@@ -2980,9 +2980,12 @@
                   "type": "object",
                   "properties": {
                     "presentations": {
-                      "$ref": "./g3/models/presentiation.json",
+                      "type": "array",
                       "x-stoplight": {
                         "id": "40lqo5mj6ncap"
+                      },
+                      "items": {
+                        "$ref": "./g3/models/presentiation.json"
                       }
                     },
                     "requestId": {
@@ -3015,7 +3018,7 @@
           },
           {
             "in": "query",
-            "name": "serviceId",
+            "name": "exchangeId",
             "schema": {
               "type": "string",
               "x-stoplight": {
@@ -3027,15 +3030,9 @@
             "in": "query",
             "name": "depotId",
             "schema": {
-              "type": "array",
+              "type": "string",
               "x-stoplight": {
                 "id": "tcpds74n96x1b"
-              },
-              "items": {
-                "x-stoplight": {
-                  "id": "xfwn2l4ivog7z"
-                },
-                "type": "string"
               }
             }
           },
@@ -3043,15 +3040,9 @@
             "in": "query",
             "name": "presentationId",
             "schema": {
-              "type": "array",
+              "type": "string",
               "x-stoplight": {
                 "id": "ozsipq3gbsz1m"
-              },
-              "items": {
-                "x-stoplight": {
-                  "id": "hti44uu9r1keo"
-                },
-                "type": "string"
               }
             }
           }
@@ -3072,68 +3063,33 @@
                 "schema": {
                   "type": "object",
                   "required": [
-                    "verified",
-                    "content",
-                    "detail",
+                    "format",
+                    "presentation",
+                    "verification",
                     "requestId"
                   ],
                   "properties": {
-                    "verified": {
-                      "type": "boolean",
-                      "x-stoplight": {
-                        "id": "s95cg7pkendqa"
-                      }
+                    "format": {
+                      "type": "string",
+                      "enum": [
+                        "JWT_VP"
+                      ]
                     },
-                    "content": {
+                    "presentation": {
+                      "type": "string",
+                      "description": "the raw presentation that was verified (a JWT_VP)"
+                    },
+                    "w3cPresentation": {
                       "$ref": "./g3/models/presentation-content.json",
                       "x-stoplight": {
                         "id": "u3iy9svxu3idz"
-                      }
+                      },
+                      "description": "the decoded W3C presentation"
                     },
-                    "detail": {
-                      "type": "object",
+                    "verification": {
+                      "$ref": "./g3/models/presentation-verification.json",
                       "x-stoplight": {
                         "id": "8auxegv8e12f5"
-                      },
-                      "properties": {
-                        "overallChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "o4u34cs09nboy"
-                          }
-                        },
-                        "verifiablePresentationChecks": {
-                          "$ref": "./g3/models/checks.json",
-                          "x-stoplight": {
-                            "id": "vcltbyqxuyjah"
-                          }
-                        },
-                        "verfiableCredentials": {
-                          "type": "array",
-                          "x-stoplight": {
-                            "id": "g28oeg57pbx2i"
-                          },
-                          "items": {
-                            "x-stoplight": {
-                              "id": "c0pjn6vwaxzej"
-                            },
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string",
-                                "x-stoplight": {
-                                  "id": "e00gvfd5cnpv5"
-                                }
-                              },
-                              "checks": {
-                                "$ref": "./g3/models/checks.json",
-                                "x-stoplight": {
-                                  "id": "9guv3htrwy5wz"
-                                }
-                              }
-                            }
-                          }
-                        }
                       }
                     },
                     "requestId": {
@@ -3141,6 +3097,30 @@
                       "x-stoplight": {
                         "id": "carkxbv9mq6n6"
                       }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Verification vouchers exhausted — the tenant has no remaining Velocity verification credits",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "errorCode": {
+                      "type": "string"
                     }
                   }
                 }
@@ -3167,33 +3147,41 @@
                       "id": "2xkdc7cb6f8nw"
                     }
                   },
-                  "presentationid": {
+                  "presentationId": {
                     "type": "string",
                     "x-stoplight": {
                       "id": "wwl3hfhkhvjuf"
                     },
-                    "description": "one of presentationid or prsentation must be passed in"
+                    "description": "verify a stored presentation by id; the result is persisted onto the presentation. Pass this, or format + presentation."
                   },
-                  "vpJwt": {
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "JWT_VP"
+                    ],
+                    "description": "required together with `presentation` when verifying an inline presentation"
+                  },
+                  "presentation": {
+                    "type": "string",
                     "x-stoplight": {
                       "id": "wuayij3a72fyn"
                     },
-                    "type": "string"
-                  },
-                  "rules": {
-                    "type": "array",
-                    "x-stoplight": {
-                      "id": "uaue6o3zqgts0"
-                    },
-                    "description": "optional set of rules to determine if credentials pass verification",
-                    "items": {
-                      "x-stoplight": {
-                        "id": "p2ehg5tki9uta"
-                      },
-                      "type": "string"
-                    }
+                    "description": "an inline JWT_VP to verify ad-hoc (not persisted). Pass together with `format`, or use `presentationId`."
                   }
-                }
+                },
+                "anyOf": [
+                  {
+                    "required": [
+                      "presentationId"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "format",
+                      "presentation"
+                    ]
+                  }
+                ]
               }
             }
           }
