@@ -1868,6 +1868,98 @@
       },
       "parameters": []
     },
+    "/presentation-links/refresh": {
+      "post": {
+        "summary": "Refresh presentation links",
+        "operationId": "presentation-links-refresh",
+        "tags": [
+          "Relying Party Services"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "serviceId": {
+                    "type": "string"
+                  },
+                  "depotId": {
+                    "type": "string",
+                    "description": "optional. Provide to create a depot-level presentation link tied to a specific user; omit for a service-level link"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "serviceId": "669f15e3591256df06edef80",
+                    "depotId": "669f15e3591256df06edeb15"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "redirectUrl",
+                    "vnProtocolLink",
+                    "openid4vpProtocolLink",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "redirectUrl": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the redirect url to embed in emails or app buttons; directs to the landing / wallet-selection page"
+                    },
+                    "vnProtocolLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the native VN-API presentation deep link"
+                    },
+                    "openid4vpProtocolLink": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "the OpenID4VP presentation link"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Sample": {
+                    "value": {
+                      "redirectUrl": "https://acme.example.com/app-redirect?deeplink=velocity-network%3A%2F%2Finspect%3Frequest_uri%3D...&openid4vp_uri=openid4vp%3A%2F%2F...",
+                      "vnProtocolLink": "velocity-network://inspect?request_uri=https%3A%2F%2Fcih.example.com%2F...",
+                      "openid4vpProtocolLink": "openid4vp://?request_uri=https%3A%2F%2Fcih.example.com%2F...",
+                      "requestId": "JKlUzWi51cFtEVcZYq6eT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
+    },
     "/credentials/create": {
       "parameters": [],
       "post": {
