@@ -1876,6 +1876,7 @@
           "Relying Party Services"
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2914,54 +2915,252 @@
     "/relying-party-services/create": {
       "post": {
         "summary": "Create relying party service",
-        "responses": {},
         "operationId": "post-rp-services-create",
         "x-stoplight": {
           "id": "g4f86frnt5yiw"
         },
         "tags": [
           "Relying Party Services"
-        ]
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json"
+                  }
+                }
+              },
+              "examples": {
+                "Relying party service (single)": {
+                  "value": {
+                    "tenantId": "669f15e3591256df06edee96",
+                    "service": {
+                      "mode": "single",
+                      "velocityNetworkServiceId": "#inspection-1",
+                      "termsUrl": "https://example.com/terms.html",
+                      "disclosureRequest": {
+                        "types": [
+                          { "type": "PastEmploymentPosition" },
+                          { "type": "EducationDegree" }
+                        ],
+                        "purpose": "Job application",
+                        "retentionPeriod": "P30D"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "parameters": []
     },
     "/relying-party-services/get": {
       "get": {
         "summary": "Get relying party service",
-        "tags": [
-          "Relying Party Services"
-        ],
-        "responses": {},
         "operationId": "relying-party-services-get",
         "x-stoplight": {
           "id": "tv1c1mo4p7gdt"
         },
-        "description": ""
+        "tags": [
+          "Relying Party Services"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "serviceId",
+            "schema": {
+              "type": "string"
+            },
+            "description": "optional. Filter to a single relying-party service id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "services",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "services": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "./g3/models/relyingparty-service.json"
+                      }
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/relying-party-services/update": {
       "post": {
         "summary": "Update relying party service",
-        "tags": [
-          "Relying Party Services"
-        ],
-        "responses": {},
         "operationId": "relying-party-services-update",
         "x-stoplight": {
           "id": "i25rplqfe76wi"
+        },
+        "tags": [
+          "Relying Party Services"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId",
+                  "service"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "serviceId": {
+                    "type": "string"
+                  },
+                  "service": {
+                    "$ref": "./g3/models/modify-relyingparty-service.json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "service",
+                    "requestId"
+                  ],
+                  "properties": {
+                    "service": {
+                      "$ref": "./g3/models/relyingparty-service.json"
+                    },
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
     "/relying-party-services/delete": {
       "post": {
         "summary": "Delete relying party service",
-        "tags": [
-          "Relying Party Services"
-        ],
-        "responses": {},
         "operationId": "relying-party-services-delete",
         "x-stoplight": {
           "id": "m4hgn3zj49p78"
+        },
+        "tags": [
+          "Relying Party Services"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "tenantId",
+                  "serviceId"
+                ],
+                "properties": {
+                  "tenantId": {
+                    "type": "string"
+                  },
+                  "serviceId": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "requestId"
+                  ],
+                  "properties": {
+                    "requestId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
