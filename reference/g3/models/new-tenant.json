@@ -5,7 +5,9 @@
         "id": "h0jeneokgbegx"
       },
       "required": [
-        "did"
+        "did",
+        "name",
+        "logo"
       ],
       "properties": {
         "did": {
@@ -37,6 +39,15 @@
             "id": "ickuiymwc5qqb"
           },
           "description": "the CAO DID to use for this issuer"
+        },
+        "name": {
+          "type": "string",
+          "description": "the display name of the organization"
+        },
+        "logo": {
+          "type": "string",
+          "format": "uri",
+          "description": "a URL to the organization's logo"
         }
       }
     }

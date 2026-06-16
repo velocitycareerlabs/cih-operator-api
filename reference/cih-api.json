@@ -9,8 +9,8 @@
   },
   "servers": [
     {
-      "url": "https://cih.velocitycareerlabs.io",
-      "description": "Credential Integration Hub"
+      "url": "https://cih.velocitycareerlabs.io/operator",
+      "description": "Credential Integration Hub operator API"
     }
   ],
   "tags": [
@@ -80,19 +80,37 @@
                 "Simple tenant": {
                   "value": {
                     "tenant": {
-                      "did": "did:web:example.com"
+                      "did": "did:web:example.com",
+                      "name": "Alpha University",
+                      "logo": "http://example.com/alpha-uni-logo-400x400.png"
                     },
                     "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
+                          "DLT_TRANSACTIONS"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#dlt-key-0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      },
+                      {
+                        "purposes": [
+                          "EXCHANGES"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#exchange-key-0",
+                        "key": "a73be1905d2f0b5c4198ef.."
+                      },
+                      {
+                        "purposes": [
                           "ISSUING_METADATA"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
+                        "kidFragment": "#issuing-metadata-key-0",
+                        "key": "c95da3017e4a2c6d3287fa.."
                       }
                     ]
                   }
@@ -101,20 +119,38 @@
                   "value": {
                     "tenant": {                      
                       "did": "did:web:example.com",
+                      "name": "Alpha University",
+                      "logo": "http://example.com/alpha-uni-logo-400x400.png",
                       "hostUrl": "https://agent.example.com",
                       "caoDid": "did:web:saasprovider.com"
                     },
                     "keys": [
                       {
                         "purposes": [
-                          "DLT_TRANSACTIONS",
-                          "EXCHANGES",
+                          "DLT_TRANSACTIONS"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#dlt-key-0",
+                        "key": "b12cca2014f1e26a6252dc.."
+                      },
+                      {
+                        "purposes": [
+                          "EXCHANGES"
+                        ],
+                        "algorithm": "SECP256K1",
+                        "encoding": "hex",
+                        "kidFragment": "#exchange-key-0",
+                        "key": "a73be1905d2f0b5c4198ef.."
+                      },
+                      {
+                        "purposes": [
                           "ISSUING_METADATA"
                         ],
                         "algorithm": "SECP256K1",
                         "encoding": "hex",
-                        "kidFragment": "#key0",
-                        "key": "b12cca2014f1e26a6252dc.."
+                        "kidFragment": "#issuing-metadata-key-0",
+                        "key": "c95da3017e4a2c6d3287fa.."
                       }
                     ]
                   }
@@ -1222,9 +1258,7 @@
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
                         "userReference": "olivia.hafez@example.com",
-                        "serviceIds": [
-                          "669f15e3591256df06edef80"
-                        ],
+                        "serviceId": "669f15e3591256df06edef80",
                         "createdAt": "2019-08-24T14:15:22Z",
                         "updatedAt": "2019-08-24T14:15:22Z"
                       },
@@ -1346,18 +1380,14 @@
                         {
                           "id": "669f15e3591256df06edeb15",
                           "userReference": "olivia.hafez@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         },
                         {
                           "id": "669f15e3591256df06edeb16",
                           "userReference": "adam.smith@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         }
@@ -1483,9 +1513,7 @@
                         {
                           "id": "669f15e3591256df06edeb15",
                           "userReference": "olivia.hafez@example.com",
-                          "serviceIds": [
-                            "669f15e3591256df06edef80"
-                          ],
+                          "serviceId": "669f15e3591256df06edef80",
                           "createdAt": "2019-08-24T14:15:22Z",
                           "updatedAt": "2019-08-24T14:15:22Z"
                         }
@@ -1585,9 +1613,7 @@
                       "depot": {
                         "id": "669f15e3591256df06edeb15",
                         "userReference": "olivia.hafez@test.com",
-                        "serviceIds": [
-                          "669f15e3591256df06edef80"
-                        ],
+                        "serviceId": "669f15e3591256df06edef80",
                         "createdAt": "2019-08-24T14:15:22Z",
                         "updatedAt": "2022-08-24T14:15:22Z"
                       },
@@ -2178,7 +2204,6 @@
                 "Example 1": {
                   "value": {
                     "tenantId": "669f15e3591256df06edee96",
-                    "serviceId": "669f15e3591256df06edef80",
                     "items": [
                       {
                         "depotId": "669f15e3591256df06edeb15",
