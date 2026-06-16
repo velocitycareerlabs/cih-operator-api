@@ -4,41 +4,48 @@
     "id": "abd5b87acb607"
   },
   "type": "object",
-  "description": "The inspection configuration for the inspector. It describes credential types wanted and (in the future) predicate information as well as terms and conditions for usage of the data",
+  "additionalProperties": false,
+  "description": "The relying-party (inspection) service configuration: the credential types requested, terms and conditions, and delivery/expiry settings",
   "examples": [
     {
-      "verifyCredentials": "true",
+      "mode": "single",
+      "velocityNetworkServiceId": "#inspection-1",
+      "termsUrl": "https://example.com/terms.html",
       "disclosureRequest": {
         "types": [
           {
             "type": "PastEmploymentPosition"
           },
           {
-            "type": "CurrentEmploymentPosition"
-          },
-          {
             "type": "EducationDegree"
           }
         ],
-        "purpose": "job application",
-        "duration": "P3M"
-      },
-      "termsUrl": "string",
-      "sendPushOnVerification": false
+        "purpose": "Job application",
+        "retentionPeriod": "P30D"
+      }
     }
   ],
   "required": [
-    "didServiceId",
-    "termsUrl",
-    "disclosureRequest"
+    "mode",
+    "velocityNetworkServiceId",
+    "termsUrl"
   ],
   "properties": {
-    "didServiceId": {
+    "mode": {
+      "type": "string",
+      "enum": [
+        "single",
+        "feed"
+      ],
+      "default": "single",
+      "description": "single (default) one-off request, or feed for an ongoing relationship where presentations may be received over time. Controls delivery only — not whether credentials are checked."
+    },
+    "velocityNetworkServiceId": {
       "type": "string",
       "x-stoplight": {
         "id": "ujjnoquvv35ai"
       },
-      "description": "the DID service id"
+      "description": "the Velocity Network service id fragment, e.g. #inspection-1. Must match the service registered on the Network for this tenant."
     },
     "description": {
       "type": "string",
@@ -47,31 +54,10 @@
         "id": "10u8nkoj2rdvq"
       }
     },
-    "commercialEntity": {
-      "type": "object",
-      "x-stoplight": {
-        "id": "zctz7m7nx0yrl"
-      },
-      "description": "overriding branding to use when representing this inspection service",
-      "properties": {
-        "name": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "tbglxqg4jyqd6"
-          }
-        },
-        "logo": {
-          "type": "string",
-          "x-stoplight": {
-            "id": "h215pcdzc1vt8"
-          },
-          "format": "uri"
-        }
-      }
-    },
     "termsUrl": {
       "type": "string",
-      "description": "link to a online terms and coniditions for issuing or disclosure",
+      "format": "uri",
+      "description": "link to online terms and conditions for the disclosure",
       "x-stoplight": {
         "id": "mr0dnxa50sccg"
       }
@@ -81,10 +67,11 @@
         "id": "obpw8smabcw7q"
       },
       "type": "object",
+      "description": "describes what the verifier is asking the holder to present",
       "required": [
         "types",
         "purpose",
-        "duration"
+        "retentionPeriod"
       ],
       "properties": {
         "types": {
@@ -92,22 +79,20 @@
           "x-stoplight": {
             "id": "n1a4pmdmvvtq3"
           },
-          "description": "the set of types that are to be disclosed.",
-          "example": "[ { \"type\": \"PastEmploymentPosition\"}, { \"type\":  \"CurrentEmploymentPosition\"}, { \"type\": \"EducationDegree\"} ]",
+          "description": "the set of credential types that are to be disclosed",
           "minItems": 1,
           "items": {
             "x-stoplight": {
               "id": "rx35shu5cj9xl"
             },
             "type": "object",
-            "minProperties": 0,
             "properties": {
               "type": {
                 "type": "string",
                 "x-stoplight": {
                   "id": "ytk28g80rkq73"
                 },
-                "description": "type is the credential type to be disclosed."
+                "description": "the credential type to be disclosed"
               }
             }
           }
@@ -117,21 +102,22 @@
           "x-stoplight": {
             "id": "qlmkcu19r8bfw"
           },
-          "description": "purpose is a summary of the description."
+          "description": "a summary of the description"
         },
-        "duration": {
+        "retentionPeriod": {
           "type": "string",
           "x-stoplight": {
             "id": "ovwch2wjx4q1w"
           },
           "format": "duration",
-          "example": "P60D",
-          "description": "Length of time the disclosure agreement will last. Duration can be any length of time.\r\n\r\nFollows the ISO 8601 standard on durations for time intervals.\r\n\r\nFormat:\r\n\r\nPxYxMxWxD\r\n\r\nWhere:\r\nx = an integer\r\nY = Years\r\nM = Months\r\nW = Weeks\r\nD = Days\r\n\r\nA valid format requires \"P\" plus at least one integer and time unit.\r\n\r\nExamples: \r\nP60D = 60 days\r\nP1Y30D = 1 year and 30 days."
+          "example": "P30D",
+          "description": "Length of time the disclosure agreement will last, as an ISO 8601 duration (PxYxMxWxD). Examples: P60D = 60 days; P1Y30D = 1 year and 30 days."
         }
       }
     },
     "presentationDefinition": {
       "type": "object",
+      "additionalProperties": true,
       "description": "A spec compliant presentation definition. https://identity.foundation/presentation-exchange/#presentation-definition",
       "x-stoplight": {
         "id": "fpp8htnqcp1g8"
@@ -146,34 +132,19 @@
       }
     },
     "authTokensExpireIn": {
-      "type": "number",
+      "type": "integer",
+      "minimum": 1,
+      "default": 604800,
+      "description": "access token TTL in seconds",
       "x-stoplight": {
         "id": "m76vst1p19ja5"
       }
     },
-    "feed": {
-      "type": "boolean",
-      "x-stoplight": {
-        "id": "isg4xu0io3vdv"
-      },
-      "description": "whether this service is being setup for continuous feeds",
-      "default": false
-    },
-    "automaticallyVerify": {
-      "type": "boolean",
-      "default": true,
-      "description": "Whether the presentation and credentials will be checked as part of the inspection flow",
-      "x-stoplight": {
-        "id": "w3hmav5uqhxi5"
-      }
-    },
-    "sendPushOnVerification": {
-      "type": "boolean",
-      "description": "whether a push notification should be sent when verification occurs. defaults to false",
-      "default": false,
-      "x-stoplight": {
-        "id": "tiynaoerut7lz"
-      }
+    "presentationRequestsExpireIn": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 600,
+      "description": "how many seconds before presentation requests issued by this service expire. Default is 10 minutes."
     }
   }
 }

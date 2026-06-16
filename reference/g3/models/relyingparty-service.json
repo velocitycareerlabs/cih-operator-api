@@ -25,18 +25,20 @@
       "properties": {
         "genericRedirectUrl": {
           "type": "string",
+          "format": "uri",
           "x-stoplight": {
             "id": "lr3ute21bdg90"
-          }
+          },
+          "description": "only returned if the service authenticates holders via verifiable_presentation"
         }
       }
     }
   ],
   "required": [
     "id",
-    "disclosureRequest",
+    "mode",
+    "velocityNetworkServiceId",
     "termsUrl",
-    "genericRedirectUrl",
     "createdAt",
     "updatedAt"
   ]
